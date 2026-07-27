@@ -22,12 +22,22 @@ export default function Header() {
         {/* Contact Info (Hidden on small screens) */}
         <div className="hidden md:flex items-center space-x-8 text-sm text-slate-600">
           <div className="flex items-center space-x-2">
-            <MapPin className="w-4 h-4 text-cyan-400" />
-            <span className="text-slate-600 font-normal">123 Arling, Miola, NY</span>
+<Image
+  src="/icons/location.png"
+  alt="Logo"
+  width={16}
+  height={16}
+  className="object-contain"
+/>            <span className="text-slate-600 font-normal">123 Arling, Miola, NY</span>
           </div>
           <div className="flex items-center space-x-2">
-            <Phone className="w-4 h-4 text-cyan-400" />
-            <span className="font-semibold text-slate-800">(+487) 384 9452</span>
+<Image
+  src="/icons/call.png"
+  alt="Logo"
+  width={16}
+  height={16}
+  className="object-contain"
+/>             <span className="font-semibold text-slate-800">(+487) 384 9452</span>
           </div>
         </div>
 
@@ -58,8 +68,13 @@ export default function Header() {
 
           {/* Search Input/Icon */}
           <div className="flex items-center text-slate-400 hover:text-slate-600 cursor-pointer space-x-2">
-            <Search className="w-4 h-4 text-cyan-400" />
-            <span className="text-sm hidden sm:inline text-slate-400 font-normal">Search..</span>
+<Image
+  src="/icons/search.png"
+  alt="Logo"
+  width={16}
+  height={16}
+  className="object-contain"
+/>             <span className="text-sm hidden sm:inline text-slate-400 font-normal">Search..</span>
           </div>
         </div>
       </div>
