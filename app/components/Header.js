@@ -20,8 +20,8 @@ export default function Header() {
   />
 </div>
         {/* Contact Info (Hidden on small screens) */}
-        <div className="hidden md:flex items-center space-x-8 text-sm text-slate-600">
-          <div className="flex items-center space-x-2">
+        <div className="hidden md:flex items-center space-x-8  text-sm text-slate-600">
+          <div className="flex items-center ml-79 space-x-2">
 <Image
   src="/icons/location.png"
   alt="Logo"
@@ -37,13 +37,13 @@ export default function Header() {
   width={16}
   height={16}
   className="object-contain"
-/>             <span className="font-semibold text-slate-800">(+487) 384 9452</span>
+/>             <span className="font-normal text-slate-600">(+487) 384 9452</span>
           </div>
         </div>
 
         {/* Book Now Button */}
         <div>
-          <button className="px-7 py-2.5 rounded-full border border-cyan-400 text-slate-700 font-medium text-sm hover:bg-cyan-400 hover:text-white transition-all duration-200">
+          <button className="px-7 py-2.5 mr-27 rounded-full border border-cyan-400 text-slate-700 font-medium text-sm hover:bg-cyan-400 hover:text-white transition-all duration-200">
             BOOK NOW
           </button>
         </div>
