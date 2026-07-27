@@ -1,29 +1,54 @@
-import React from 'react';
-import HeroSplash from '@/app/components/HeroSplash';
+'use client';
 
-export const metadata = {
-  title: 'Insove | Advanced Medical Healthcare Web Application',
-  description: 'Welcome to Insove, your trusted platform for modern medical care.',
-};
+import React, { useState } from 'react';
+import Header from '@/app/components/Header';
+import HeroSection from '@/app/components/HeroSection';
+import HeroSplash from '@/app/components/HeroSplash';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Page() {
+  const [showMain, setShowMain] = useState(false);
+
   return (
     <main className="min-h-screen relative overflow-hidden bg-slate-950">
-      {/* 1. Fully Blurred Background Image */}
-      <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat filter blur-xl scale-110 opacity-70"
-        style={{ backgroundImage: "url('/images/blur.jpg')" }}
-      />
-      
-      {/* Dark tint overlay to make text and image pop */}
-      <div className="absolute inset-0 " />
+      <AnimatePresence mode="wait">
+        {!showMain ? (
+          /* 1. Splash Screen View */
+          <motion.div
+            key="splash"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="absolute inset-0 z-50 min-h-screen"
+          >
+            {/* Fully Blurred Background Image */}
+            <div 
+              className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat filter blur-xl scale-110 opacity-70"
+              style={{ backgroundImage: "url('/images/blur.jpg')" }}
+            />
+            <div className="absolute inset-0 bg-black/40" />
 
-      {/* 2. Hero Content Layer */}
-      <HeroSplash 
-        appName="Insove"
-        tagline="Medical Healthcare Web Application"
-        imageSrc="/images/doctors.png"
-      />
+            <HeroSplash 
+              appName="Insove"
+              imageSrc="/images/doctors.png"
+              onEnter={() => setShowMain(true)}
+            />
+          </motion.div>
+        ) : (
+          /* 2. Main Website View (Header + Hero Section) */
+          <motion.div
+            key="main-site"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="min-h-screen bg-slate-50 relative overflow-hidden"
+          >
+            <Header />
+            <HeroSection />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
