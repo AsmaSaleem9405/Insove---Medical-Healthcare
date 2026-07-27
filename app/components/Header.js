@@ -13,7 +13,7 @@ export default function Header() {
         {/* Logo with 3 overlapping circles */}
         <div className="relative w-27 h-27 flex items-center ml-30 justify-center">
   <Image
-    src="/images/logo.png"
+    src="/images/Logo.png"
     alt="Insove Logo"
     fill
     className="object-contain"
