@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 export default function HeroSection() {
   return (
-    <section 
+    <section id="home"
       className="relative flex items-center overflow-hidden bg-[#E8F0F1] py-12 md:py-0"
 style={{
   width: "100%",

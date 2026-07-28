@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Header from '@/app/components/Header';
 import HeroSection from '@/app/components/HeroSection';
 import HeroSplash from '@/app/components/HeroSplash';
+import ServicesAppointmentPage from '@/app/services-appointment/page';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Page() {
@@ -36,7 +37,7 @@ export default function Page() {
             />
           </motion.div>
         ) : (
-          /* 2. Main Website View (Header + Hero Section) */
+          /* 2. Main Website View (Header + Hero Section + Services & Appointment) */
           <motion.div
             key="main-site"
             initial={{ opacity: 0, y: 30 }}
@@ -46,6 +47,7 @@ export default function Page() {
           >
             <Header />
             <HeroSection />
+            <ServicesAppointmentPage />
           </motion.div>
         )}
       </AnimatePresence>
