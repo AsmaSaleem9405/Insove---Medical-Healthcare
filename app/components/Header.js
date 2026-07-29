@@ -52,7 +52,7 @@ export default function Header() {
               width={16}
               height={16}
               className="object-contain"
-            />          
+            />         
             <span className="text-slate-600 font-normal">123 Arling, Miola, NY</span>
           </div>
           <div className="flex items-center space-x-2">
@@ -62,35 +62,25 @@ export default function Header() {
               width={16}
               height={16}
               className="object-contain"
-            />            
+            />         
             <span className="font-normal text-slate-600">(+487) 384 9452</span>
           </div>
         </div>
 
         {/* Search Icon & Mobile Hamburger */}
         <div className="flex items-center space-x-3">
-          {/* Mobile Search Button (Triggers a quick search or expands) */}
-          <form onSubmit={handleSearch} className="md:hidden flex items-center">
+          {/* Mobile Search Button Styled Like Desktop */}
+          <form onSubmit={handleSearch} className="md:hidden flex items-center bg-transparent space-x-2">
+            <button type="submit" className="flex items-center focus:outline-none bg-transparent border-none cursor-pointer">
+              <Search className="w-4 h-4 text-[#1CBCCF] stroke-[2.2]" />
+            </button>
             <input
               type="text"
               placeholder="Search..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-24 text-xs border border-slate-200 rounded-l-full px-2 py-1.5 focus:outline-none focus:border-[#1CBCCF]"
+              className="text-sm italic bg-transparent text-slate-500 placeholder:text-slate-400 placeholder:italic focus:outline-none w-24"
             />
-            <button 
-              type="submit"
-              className="bg-[#1CBCCF] text-white px-2 py-1.5 rounded-r-full flex items-center justify-center"
-              aria-label="Search"
-            >
-              <Image
-                src="/icons/search.png"
-                alt="Search"
-                width={12}
-                height={12}
-                className="object-contain brightness-0 invert"
-              />
-            </button>
           </form>
 
           {/* Desktop Book Now Button */}
@@ -129,22 +119,16 @@ export default function Header() {
           </nav>
 
           {/* Search Form (Clickable & Redirects on Enter) */}
-          <form onSubmit={handleSearch} className="flex items-center bg-slate-50 border border-slate-200 rounded-full px-3 py-1 space-x-2">
+          <form onSubmit={handleSearch} className="flex items-center bg-transparent space-x-2.5">
             <button type="submit" className="flex items-center focus:outline-none bg-transparent border-none cursor-pointer">
-              <Image
-                src="/icons/search.png"
-                alt="Search"
-                width={16}
-                height={16}
-                className="object-contain"
-              />
+              <Search className="w-5 h-5 text-[#1CBCCF] stroke-[2.2]" />
             </button>
             <input
               type="text"
-              placeholder="Search.."
+              placeholder="Search..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="text-sm bg-transparent text-slate-600 focus:outline-none w-28"
+              className="text-base italic bg-transparent text-slate-500 placeholder:text-slate-400 placeholder:italic focus:outline-none w-32"
             />
           </form>
         </div>
@@ -180,11 +164,11 @@ export default function Header() {
             {/* Contact Info with separation line colored #1CBCCF */}
             <div className="flex flex-col items-center space-y-2 text-sm text-slate-600 pt-3 border-t border-[#1CBCCF] w-full">
               <div className="flex items-center justify-center space-x-2">
-                <Image src="/icons/location.png" alt="Location" width={16} height={16} className="object-contain" />          
+                <Image src="/icons/location.png" alt="Location" width={16} height={16} className="object-contain" />         
                 <span>123 Arling, Miola, NY</span>
               </div>
               <div className="flex items-center justify-center space-x-2">
-                <Image src="/icons/call.png" alt="Phone" width={16} height={16} className="object-contain" />            
+                <Image src="/icons/call.png" alt="Phone" width={16} height={16} className="object-contain" />         
                 <span>(+487) 384 9452</span>
               </div>
             </div>

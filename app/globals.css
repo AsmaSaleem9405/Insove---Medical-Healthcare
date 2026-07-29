@@ -24,3 +24,10 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Optional: Safe custom helper class for your background image that avoids Tailwind parser bugs */
+.banner-bg {
+  background-image: var(--banner-img, url('/images/bg/e.png'));
+  background-size: cover;
+  background-position: center;
+}

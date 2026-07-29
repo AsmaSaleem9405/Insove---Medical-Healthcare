@@ -103,7 +103,7 @@ export default function HeroSection() {
           <motion.div
             whileHover={{ scale: 1.02 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="relative z-10 w-full max-w-[280px] sm:max-w-md md:max-w-2xl md:mr-40 md:mt-6 md:-mb-16 h-[340px] sm:h-[450px] md:h-[760px] flex justify-center items-end m-0 p-0 bottom-0"
+            className="relative z-10 w-full max-w-[280px] sm:max-w-md md:max-w-2xl md:mr-40 md:mt-6 md:-mb-19 h-[340px] sm:h-[450px] md:h-[760px] flex justify-center items-end m-0 p-0 bottom-0"
           >
             <Image
               src="/images/dr-1.png"

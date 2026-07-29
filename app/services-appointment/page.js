@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 export default function ServicesAppointmentPage() {
   return (
@@ -26,64 +27,110 @@ export default function ServicesAppointmentPage() {
         </section>
 
         {/* SECTION 2: Services Banner & Cards */}
-        <section className="relative">
-          <div className="bg-[#1fc5d4] rounded-3xl p-8 sm:p-12 lg:p-16 text-white relative overflow-hidden flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
-            <div className="max-w-xl">
+        <section className="relative px-4 sm:px-6 lg:px-8">
+          {/* Top Banner with Background Image & Left/Right Spacing */}
+          <div 
+            className="relative overflow-hidden rounded-3xl bg-[#1fc5d4] px-8 sm:px-12 lg:px-16 py-8 text-white flex flex-col lg:flex-row justify-between items-center gap-6 mx-auto w-full max-w-[1166px] h-auto lg:h-[318px]"
+          >
+            {/* Next.js Optimized Background Image */}
+            <Image
+              src="/images/bg.jpg"
+              alt="Background Banner"
+              fill
+              className="object-cover object-center z-0"
+              priority
+            />
+
+            {/* Optional Overlay to improve text contrast if needed */}
+
+            {/* Left Content */}
+            <div className="relative z-20 max-w-xl">
               <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
                 Our Best Services For <br /> Your Solution
               </h2>
             </div>
-            <div className="max-w-md text-sm sm:text-base text-cyan-50">
+
+            {/* Right Content */}
+            <div className="relative z-20 max-w-md text-sm sm:text-base text-cyan-50">
               <p>
-                Vitae aliquam vestibulum elit adipiscing massa diam in dignissim. Risus tellus libero elementum aliquam etiam. Lectus adipiscing est auctor mi quisque nunc non viverra est.
+                Vitae aliquam vestibulum elit adipiscing massa diam in dignissim.
+                Risus tellus libero elementum aliquam etiam. Lectus adipiscing est
+                auctor mi quisque nunc non viverra est.
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-4 sm:px-8 -mt-10 sm:-mt-16 relative z-10">
+          {/* Service Cards Container */}
+          <div className="max-w-[1066px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 -mt-10 sm:-mt-16 relative z-30">
+
             {/* Card 1 */}
-            <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-50 flex flex-col items-center text-center transition-transform hover:-translate-y-1">
-              <div className="w-12 h-12 mb-4 flex items-center justify-center text-[#3bc5d4]">
-                <img src="/icons/general-practitioner.png" alt="General Practitioners" className="w-8 h-8 object-contain" />
+            <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-50 flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-2">
+              <div className="w-12 h-12 mb-4 flex items-center justify-center">
+                <img
+                  src="/icons/general-practitioner.png"
+                  alt="General Practitioners"
+                  className="w-8 h-8 object-contain"
+                />
               </div>
-              <h4 className="font-bold text-gray-800 text-lg mb-2">General Practitioners</h4>
-              <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
+              <h4 className="font-bold text-gray-800 text-lg mb-2">
+                General Practitioners
+              </h4>
+              <p className="text-gray-400 text-sm leading-relaxed">
                 Aliquam etiam lectus adipiscing est auctor mi quisque non viverra.
               </p>
             </div>
 
             {/* Card 2 */}
-            <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-50 flex flex-col items-center text-center transition-transform hover:-translate-y-1">
-              <div className="w-12 h-12 mb-4 flex items-center justify-center text-[#3bc5d4]">
-                <img src="/icons/pregnancy-support.png" alt="Pregnancy Support" className="w-8 h-8 object-contain" />
+            <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-50 flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-2">
+              <div className="w-12 h-12 mb-4 flex items-center justify-center">
+                <img
+                  src="/icons/pregnancy-support.png"
+                  alt="Pregnancy Support"
+                  className="w-8 h-8 object-contain"
+                />
               </div>
-              <h4 className="font-bold text-gray-800 text-lg mb-2">Pregnancy Support</h4>
-              <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
+              <h4 className="font-bold text-gray-800 text-lg mb-2">
+                Pregnancy Support
+              </h4>
+              <p className="text-gray-400 text-sm leading-relaxed">
                 Aliquam etiam lectus adipiscing est auctor mi quisque non viverra.
               </p>
             </div>
 
             {/* Card 3 */}
-            <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-50 flex flex-col items-center text-center transition-transform hover:-translate-y-1">
-              <div className="w-12 h-12 mb-4 flex items-center justify-center text-[#3bc5d4]">
-                <img src="/icons/nutritional-support.png" alt="Nutritional Support" className="w-8 h-8 object-contain" />
+            <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-50 flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-2">
+              <div className="w-12 h-12 mb-4 flex items-center justify-center">
+                <img
+                  src="/icons/nutritional-support.png"
+                  alt="Nutritional Support"
+                  className="w-8 h-8 object-contain"
+                />
               </div>
-              <h4 className="font-bold text-gray-800 text-lg mb-2">Nutritional Support</h4>
-              <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
+              <h4 className="font-bold text-gray-800 text-lg mb-2">
+                Nutritional Support
+              </h4>
+              <p className="text-gray-400 text-sm leading-relaxed">
                 Aliquam etiam lectus adipiscing est auctor mi quisque non viverra.
               </p>
             </div>
 
             {/* Card 4 */}
-            <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-50 flex flex-col items-center text-center transition-transform hover:-translate-y-1">
-              <div className="w-12 h-12 mb-4 flex items-center justify-center text-[#3bc5d4]">
-                <img src="/icons/pharmaceutical-care.png" alt="Pharmaceutical Care" className="w-8 h-8 object-contain" />
+            <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-50 flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-2">
+              <div className="w-12 h-12 mb-4 flex items-center justify-center">
+                <img
+                  src="/icons/pharmaceutical-care.png"
+                  alt="Pharmaceutical Care"
+                  className="w-8 h-8 object-contain"
+                />
               </div>
-              <h4 className="font-bold text-gray-800 text-lg mb-2">Pharmaceutical Care</h4>
-              <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
+              <h4 className="font-bold text-gray-800 text-lg mb-2">
+                Pharmaceutical Care
+              </h4>
+              <p className="text-gray-400 text-sm leading-relaxed">
                 Aliquam etiam lectus adipiscing est auctor mi quisque non viverra.
               </p>
             </div>
+
           </div>
         </section>
 
