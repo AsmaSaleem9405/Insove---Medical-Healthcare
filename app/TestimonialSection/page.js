@@ -34,12 +34,12 @@ const testimonials = [
   },
 ];
 
-// Side preview images positioned with single borderless circles
+// Side preview images positioned with larger container sizes (w-20 h-20 / w-24 h-24)
 const secondaryAvatars = [
-  { src: "/images/img1.png", alt: "User 1", position: "top-4 left-1/3 w-14 h-14" },
-  { src: "/images/img2.png", alt: "User 2", position: "top-16 left-8 w-16 h-16" },
-  { src: "/images/img3.png", alt: "User 3", position: "bottom-12 left-16 w-12 h-12" },
-  { src: "/images/img4.png", alt: "User 4", position: "bottom-4 left-1/2 w-14 h-14" },
+  { src: "/images/img1.png", alt: "User 1", position: "top-2 left-1/3 w-20 h-20 md:w-24 md:h-24" },
+  { src: "/images/img2.png", alt: "User 2", position: "top-12 left-4 w-20 h-20 md:w-24 md:h-24" },
+  { src: "/images/img3.png", alt: "User 3", position: "bottom-8 left-12 w-20 h-20 md:w-24 md:h-24" },
+  { src: "/images/img4.png", alt: "User 4", position: "bottom-2 left-1/2 w-20 h-20 md:w-24 md:h-24" },
 ];
 
 export default function TestimonialSection() {
@@ -69,21 +69,21 @@ export default function TestimonialSection() {
           {secondaryAvatars.map((item, index) => (
             <div 
               key={index} 
-              className={`absolute ${item.position}  transition-transform duration-500 hover:scale-110 animate-bounce-slow`}
+              className={`absolute ${item.position} rounded-full overflow-hidden  transition-transform duration-500 hover:scale-110 animate-bounce-slow`}
               style={{ animationDelay: `${index * 0.7}s` }}
             >
               <Image 
                 src={item.src} 
                 alt={item.alt} 
-                width={120} 
-                height={120} 
-                className="w-30 h-20 object-cover rounded-full"
+                width={150} 
+                height={150} 
+                className="w-20 h-20 object-cover shadow-amber-50 rounded-full"
               />
             </div>
           ))}
 
-          {/* Central Active Featured Person Avatar: Single solid circle wrapper with gradient border, image filling completely */}
-          <div className="absolute z-10 w-32 h-32 md:w-40 md:h-40 rounded-full p-1 bg-gradient-to-tr from-cyan-400 to-teal-200 shadow-5xl animate-float">
+          {/* Central Active Featured Person Avatar */}
+          <div className="absolute z-10 w-32 h-32 md:w-40 md:h-40 rounded-full p-1 bg-gradient-to-tr from-cyan-400 to-teal-200 shadow-2xl animate-float">
             <div className="w-full h-full rounded-full overflow-hidden relative">
               <Image 
                 key={currentTestimonial.activePersonImg}
@@ -103,13 +103,13 @@ export default function TestimonialSection() {
           
           <div className="transition-all duration-500 transform translate-y-0">
             {/* Inline Paragraph with Opening and Closing Gallery Semicolons */}
-            <p className="text-slate-700 text-base md:text-lg leading-relaxed font-normal">
+            <p className="text-slate-700 text-base   md:text-lg leading-relaxed font-normal">
               <span className="inline-block relative w-12 h-12 align-middle mr-2 -mt-1">
                 <Image 
                   src="/images/semi.png" 
                   alt="Quote Opening" 
                   fill 
-                  className="object-contain"
+                  className="object-contain -ml-13"
                 />
               </span>
               <span>{currentTestimonial.quote}</span>
