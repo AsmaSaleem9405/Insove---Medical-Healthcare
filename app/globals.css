@@ -31,3 +31,23 @@ body {
   background-size: cover;
   background-position: center;
 }
+/* Hide default calendar icon */
+.custom-date::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  display: none;
+  -webkit-appearance: none;
+}
+
+/* Hide default time icon */
+.custom-time::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  display: none;
+  -webkit-appearance: none;
+}
+
+/* Remove default styling */
+.custom-date,
+.custom-time {
+  appearance: none;
+  -webkit-appearance: none;
+}

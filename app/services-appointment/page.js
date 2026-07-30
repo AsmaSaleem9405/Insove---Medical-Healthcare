@@ -1,7 +1,29 @@
+"use client";
+
 import React from 'react';
 import Image from 'next/image';
+import { useRef } from "react";
 
 export default function ServicesAppointmentPage() {
+ const dateRef = useRef(null);
+  const timeRef = useRef(null);
+
+  const openDatePicker = () => {
+    if (dateRef.current?.showPicker) {
+      dateRef.current.showPicker();
+    } else {
+      dateRef.current.focus();
+    }
+  };
+
+  const openTimePicker = () => {
+    if (timeRef.current?.showPicker) {
+      timeRef.current.showPicker();
+    } else {
+      timeRef.current.focus();
+    }
+  };
+
   return (
     <main className="w-full bg-white py-12 px-4 sm:px-6 lg:px-8 font-sans">
       <div className="max-w-7xl mx-auto space-y-20">
@@ -41,21 +63,20 @@ export default function ServicesAppointmentPage() {
               priority
             />
 
-            {/* Optional Overlay to improve text contrast if needed */}
-
             {/* Left Content */}
             <div className="relative z-20 max-w-xl">
+              <span className="text-xs uppercase tracking-widest font-semibold bg-white/20 px-3 py-1 rounded-full mb-3 inline-block">
+                Welcome to Insove Healthcare
+              </span>
               <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-                Our Best Services For <br /> Your Solution
+                Our Best Medical Services For <br /> Your Health Solution
               </h2>
             </div>
 
             {/* Right Content */}
             <div className="relative z-20 max-w-md text-sm sm:text-base text-cyan-50">
               <p>
-                Vitae aliquam vestibulum elit adipiscing massa diam in dignissim.
-                Risus tellus libero elementum aliquam etiam. Lectus adipiscing est
-                auctor mi quisque nunc non viverra est.
+                At Insove, we provide comprehensive, patient-centered medical care led by expert professionals. Your well-being and recovery are our top priorities every single day.
               </p>
             </div>
           </div>
@@ -67,7 +88,7 @@ export default function ServicesAppointmentPage() {
             <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-50 flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-2">
               <div className="w-12 h-12 mb-4 flex items-center justify-center">
                 <img
-                  src="/icons/general-practitioner.png"
+                  src="/icons/home.png"
                   alt="General Practitioners"
                   className="w-8 h-8 object-contain"
                 />
@@ -76,7 +97,7 @@ export default function ServicesAppointmentPage() {
                 General Practitioners
               </h4>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Aliquam etiam lectus adipiscing est auctor mi quisque non viverra.
+                Comprehensive primary healthcare evaluations, routine checkups, and personalized wellness consultations.
               </p>
             </div>
 
@@ -84,7 +105,7 @@ export default function ServicesAppointmentPage() {
             <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-50 flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-2">
               <div className="w-12 h-12 mb-4 flex items-center justify-center">
                 <img
-                  src="/icons/pregnancy-support.png"
+                  src="/icons/pregnancy.png"
                   alt="Pregnancy Support"
                   className="w-8 h-8 object-contain"
                 />
@@ -93,7 +114,7 @@ export default function ServicesAppointmentPage() {
                 Pregnancy Support
               </h4>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Aliquam etiam lectus adipiscing est auctor mi quisque non viverra.
+                Dedicated maternal care, prenatal monitoring, and expert guidance throughout your motherhood journey.
               </p>
             </div>
 
@@ -101,7 +122,7 @@ export default function ServicesAppointmentPage() {
             <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-50 flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-2">
               <div className="w-12 h-12 mb-4 flex items-center justify-center">
                 <img
-                  src="/icons/nutritional-support.png"
+                  src="/icons/medi2.png"
                   alt="Nutritional Support"
                   className="w-8 h-8 object-contain"
                 />
@@ -110,7 +131,7 @@ export default function ServicesAppointmentPage() {
                 Nutritional Support
               </h4>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Aliquam etiam lectus adipiscing est auctor mi quisque non viverra.
+                Custom diet plans and nutritional counseling designed to improve your metabolic health and vitality.
               </p>
             </div>
 
@@ -118,7 +139,7 @@ export default function ServicesAppointmentPage() {
             <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-50 flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-2">
               <div className="w-12 h-12 mb-4 flex items-center justify-center">
                 <img
-                  src="/icons/pharmaceutical-care.png"
+                  src="/icons/medi1.png"
                   alt="Pharmaceutical Care"
                   className="w-8 h-8 object-contain"
                 />
@@ -127,7 +148,7 @@ export default function ServicesAppointmentPage() {
                 Pharmaceutical Care
               </h4>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Aliquam etiam lectus adipiscing est auctor mi quisque non viverra.
+                Safe medication management, expert pharmaceutical guidance, and prescription support services.
               </p>
             </div>
 
@@ -138,8 +159,9 @@ export default function ServicesAppointmentPage() {
         <section className="max-w-4xl mx-auto pt-6">
           <div className="text-center mb-10">
             <h3 className="text-2xl sm:text-3xl font-bold text-gray-800">
-              Book Appointment Or Call: <span className="text-[#3bc5d4]">(+487) 384 9452</span>
+              Book Insove Appointment Or Call: <span className="text-[#3bc5d4]">(+487) 384 9452</span>
             </h3>
+            <p className="text-gray-500 text-sm mt-2">Schedule your visit with our specialist doctors in just a few clicks.</p>
           </div>
 
           <form className="space-y-4">
@@ -166,24 +188,70 @@ export default function ServicesAppointmentPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <input type="text" placeholder="Full Name" className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-700 text-sm focus:outline-none focus:border-[#3bc5d4]" />
+              <div className="relative">
+                <input 
+                  type="text" 
+                  placeholder="Full Name" 
+                  className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 pr-12 text-gray-700 text-sm focus:outline-none focus:border-[#3bc5d4]" 
+                />
               </div>
-              <div>
-                <input type="tel" placeholder="Phone Number" className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-700 text-sm focus:outline-none focus:border-[#3bc5d4]" />
+
+              <div className="relative">
+                <input 
+                  type="tel" 
+                  placeholder="Phone Number" 
+                  className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 pr-12 text-gray-700 text-sm focus:outline-none focus:border-[#3bc5d4]" 
+                />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <input type="date" className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-500 text-sm focus:outline-none focus:border-[#3bc5d4]" />
-              </div>
-              <div>
-                <input type="time" className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-500 text-sm focus:outline-none focus:border-[#3bc5d4]" />
-              </div>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* Date */}
+      <div className="relative">
+        <input
+          ref={dateRef}
+          type="date"
+          className="custom-date w-full bg-white border border-gray-200 rounded-xl px-4 py-3 pr-12 text-gray-500 text-sm focus:outline-none focus:border-[#3bc5d4]"
+        />
 
-            <div className="pt-4">
+        <button
+          type="button"
+          onClick={openDatePicker}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-10"
+        >
+          <Image
+            src="/icons/calendar.png"
+            alt="Calendar"
+            width={20}
+            height={20}
+          />
+        </button>
+      </div>
+
+      {/* Time */}
+      <div className="relative">
+        <input
+          ref={timeRef}
+          type="time"
+          className="custom-time w-full bg-white border border-gray-200 rounded-xl px-4 py-3 pr-12 text-gray-500 text-sm focus:outline-none focus:border-[#3bc5d4]"
+        />
+
+        <button
+          type="button"
+          onClick={openTimePicker}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-10"
+        >
+          <Image
+            src="/icons/clock.png"
+            alt="Clock"
+            width={20}
+            height={20}
+          />
+        </button>
+      </div>
+    </div>
+
+            <div className="pt-4 text-center sm:text-left">
               <button type="submit" className="w-full sm:w-auto bg-[#1fc5d4] hover:bg-[#1bb0be] text-white font-medium px-8 py-3.5 rounded-full shadow-lg transition-colors duration-200 text-sm tracking-wide uppercase">
                 Book An Appointment
               </button>
