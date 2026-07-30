@@ -6,6 +6,7 @@ import HeroSection from '@/app/components/HeroSection';
 import HeroSplash from '@/app/components/HeroSplash';
 import ServicesAppointmentPage from '@/app/services-appointment/page';
 import TestimonialSection from '@/app/TestimonialSection/page';
+import TeamClient from '@/app/team/TeamClient'; // <-- Import the client component directly
 
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -38,7 +39,7 @@ export default function Page() {
             />
           </motion.div>
         ) : (
-          /* 2. Main Website View (Header + Hero Section + Services & Appointment) */
+          /* 2. Main Website View */
           <motion.div
             key="main-site"
             initial={{ opacity: 0, y: 30 }}
@@ -49,7 +50,8 @@ export default function Page() {
             <Header />
             <HeroSection />
             <ServicesAppointmentPage />
-             <TestimonialSection />
+            <TestimonialSection />
+            <TeamClient /> {/* <-- Capitalized and using the correct component */}
           </motion.div>
         )}
       </AnimatePresence>
