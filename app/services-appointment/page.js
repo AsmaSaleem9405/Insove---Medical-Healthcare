@@ -64,17 +64,15 @@ export default function ServicesAppointmentPage() {
             />
 
             {/* Left Content */}
-            <div className="relative z-20 max-w-xl">
-              <span className="text-xs uppercase tracking-widest font-semibold bg-white/20 px-3 py-1 rounded-full mb-3 inline-block">
-                Welcome to Insove Healthcare
-              </span>
+            <div className="relative z-20 md:pb-12 pb:10 max-w-xl">
+             
               <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
                 Our Best Medical Services For <br /> Your Health Solution
               </h2>
             </div>
 
             {/* Right Content */}
-            <div className="relative z-20 max-w-md text-sm sm:text-base text-cyan-50">
+            <div className="relative z-20 max-w-md md:pb-12 pb-19  text-sm sm:text-base text-cyan-50">
               <p>
                 At Insove, we provide comprehensive, patient-centered medical care led by expert professionals. Your well-being and recovery are our top priorities every single day.
               </p>
@@ -82,7 +80,7 @@ export default function ServicesAppointmentPage() {
           </div>
 
           {/* Service Cards Container */}
-          <div className="max-w-[1066px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 -mt-10 sm:-mt-16 relative z-30">
+          <div className="max-w-[1066px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 -mt-19 sm:-mt-25 relative z-30">
 
             {/* Card 1 */}
             <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-50 flex flex-col items-center text-center transition-transform duration-300 hover:-translate-y-2">
