@@ -5,6 +5,8 @@ import Header from '@/app/components/Header';
 import HeroSection from '@/app/components/HeroSection';
 import HeroSplash from '@/app/components/HeroSplash';
 import ServicesAppointmentPage from '@/app/services-appointment/page';
+import TestimonialSection from '@/app/TestimonialSection/page';
+
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Page() {
@@ -47,6 +49,7 @@ export default function Page() {
             <Header />
             <HeroSection />
             <ServicesAppointmentPage />
+             <TestimonialSection />
           </motion.div>
         )}
       </AnimatePresence>
