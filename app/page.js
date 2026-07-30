@@ -28,7 +28,6 @@ export default function Page() {
               className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat filter blur-xl scale-110 opacity-70"
               style={{ backgroundImage: "url('/images/blur.jpg')" }}
             />
-            <div className="absolute inset-0 bg-black/40" />
 
             <HeroSplash 
               appName="Insove"

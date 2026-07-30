@@ -39,6 +39,52 @@ export default function ServicesAppointmentPage() {
   const timeRef = useRef(null);
   const containerRef = useRef(null);
 
+  // Form State Management
+  const [formData, setFormData] = useState({
+    department: '',
+    doctor: '',
+    fullName: '',
+    phone: '',
+    date: '',
+    time: ''
+  });
+  const [loading, setLoading] = useState(false);
+  const [statusMessage, setStatusMessage] = useState(null);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Form submit triggered!", formData); // Check if this appears in your browser F12 console
+    
+    setLoading(true);
+    setStatusMessage(null);
+
+    try {
+      const response = await fetch('/api/appointment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setStatusMessage({ type: 'success', text: result.message });
+        setFormData({ department: '', doctor: '', fullName: '', phone: '', date: '', time: '' });
+      } else {
+        setStatusMessage({ type: 'error', text: result.message || 'Something went wrong.' });
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+      setStatusMessage({ type: 'error', text: 'Failed to connect to the server.' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Scroll hooks for continuous dynamic motion on scroll up/down
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -49,18 +95,22 @@ export default function ServicesAppointmentPage() {
   const rotateX = useTransform(scrollYProgress, [0, 0.5, 1], [3, -3, 3]);
 
   const openDatePicker = () => {
-    if (dateRef.current?.showPicker) {
-      dateRef.current.showPicker();
-    } else {
-      dateRef.current.focus();
+    if (dateRef.current) {
+      if (typeof dateRef.current.showPicker === 'function') {
+        dateRef.current.showPicker();
+      } else {
+        dateRef.current.focus();
+      }
     }
   };
 
   const openTimePicker = () => {
-    if (timeRef.current?.showPicker) {
-      timeRef.current.showPicker();
-    } else {
-      timeRef.current.focus();
+    if (timeRef.current) {
+      if (typeof timeRef.current.showPicker === 'function') {
+        timeRef.current.showPicker();
+      } else {
+        timeRef.current.focus();
+      }
     }
   };
 
@@ -185,10 +235,22 @@ export default function ServicesAppointmentPage() {
               <p className="text-gray-500 text-sm mt-2">Schedule your visit with our specialist doctors in just a few clicks.</p>
             </div>
 
-            <form className="space-y-4">
+            {statusMessage && (
+              <div className={`mb-6 p-4 rounded-xl text-sm text-center ${statusMessage.type === 'success' ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200'}`}>
+                {statusMessage.text}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="relative">
-                  <select className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-500 text-sm focus:outline-none focus:border-[#3bc5d4] appearance-none">
+                  <select 
+                    name="department"
+                    value={formData.department}
+                    onChange={handleChange}
+                    required
+                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-500 text-sm focus:outline-none focus:border-[#3bc5d4] appearance-none cursor-pointer"
+                  >
                     <option value="">Select Department</option>
                     <option value="general">General Practitioners</option>
                     <option value="pregnancy">Pregnancy Support</option>
@@ -199,7 +261,13 @@ export default function ServicesAppointmentPage() {
                 </div>
 
                 <div className="relative">
-                  <select className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-500 text-sm focus:outline-none focus:border-[#3bc5d4] appearance-none">
+                  <select 
+                    name="doctor"
+                    value={formData.doctor}
+                    onChange={handleChange}
+                    required
+                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 text-gray-500 text-sm focus:outline-none focus:border-[#3bc5d4] appearance-none cursor-pointer"
+                  >
                     <option value="">Select Doctor</option>
                     <option value="dr-smith">Dr. Smith</option>
                     <option value="dr-johnson">Dr. Johnson</option>
@@ -210,39 +278,73 @@ export default function ServicesAppointmentPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="relative">
-                  <input type="text" placeholder="Full Name" className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 pr-12 text-gray-700 text-sm focus:outline-none focus:border-[#3bc5d4]" />
+                  <input 
+                    type="text" 
+                    name="fullName"
+                    placeholder="Full Name" 
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    required
+                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 pr-12 text-gray-700 text-sm focus:outline-none focus:border-[#3bc5d4]" 
+                  />
                 </div>
                 <div className="relative">
-                  <input type="tel" placeholder="Phone Number" className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 pr-12 text-gray-700 text-sm focus:outline-none focus:border-[#3bc5d4]" />
+                  <input 
+                    type="tel" 
+                    name="phone"
+                    placeholder="Phone Number" 
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                    className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 pr-12 text-gray-700 text-sm focus:outline-none focus:border-[#3bc5d4]" 
+                  />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="relative">
-                  <input ref={dateRef} type="date" className="custom-date w-full bg-white border border-gray-200 rounded-xl px-4 py-3 pr-12 text-gray-500 text-sm focus:outline-none focus:border-[#3bc5d4]" />
-                  <button type="button" onClick={openDatePicker} className="absolute right-4 top-1/2 -translate-y-1/2 z-10">
+                <div className="relative cursor-pointer" onClick={openDatePicker}>
+                  <input 
+                    ref={dateRef} 
+                    type="date" 
+                    name="date"
+                    value={formData.date}
+                    onChange={handleChange}
+                    required
+                    className="custom-date w-full bg-white border border-gray-200 rounded-xl px-4 py-3 pr-12 text-gray-500 text-sm focus:outline-none focus:border-[#3bc5d4] cursor-pointer" 
+                  />
+                  <button type="button" onClick={(e) => { e.stopPropagation(); openDatePicker(); }} className="absolute right-4 top-1/2 -translate-y-1/2 z-10 cursor-pointer p-1">
                     <Image src="/icons/calendar.png" alt="Calendar" width={20} height={20} />
                   </button>
                 </div>
 
-                <div className="relative">
-                  <input ref={timeRef} type="time" className="custom-time w-full bg-white border border-gray-200 rounded-xl px-4 py-3 pr-12 text-gray-500 text-sm focus:outline-none focus:border-[#3bc5d4]" />
-                  <button type="button" onClick={openTimePicker} className="absolute right-4 top-1/2 -translate-y-1/2 z-10">
+                <div className="relative cursor-pointer" onClick={openTimePicker}>
+                  <input 
+                    ref={timeRef} 
+                    type="time" 
+                    name="time"
+                    value={formData.time}
+                    onChange={handleChange}
+                    required
+                    className="custom-time w-full bg-white border border-gray-200 rounded-xl px-4 py-3 pr-12 text-gray-500 text-sm focus:outline-none focus:border-[#3bc5d4] cursor-pointer" 
+                  />
+                  <button type="button" onClick={(e) => { e.stopPropagation(); openTimePicker(); }} className="absolute right-4 top-1/2 -translate-y-1/2 z-10 cursor-pointer p-1">
                     <Image src="/icons/clock.png" alt="Clock" width={20} height={20} />
                   </button>
                 </div>
               </div>
 
-              <div className="pt-4 text-center sm:text-left">
-                <motion.button 
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit" 
-                  className="w-full sm:w-auto bg-[#1fc5d4] hover:bg-[#1bb0be] text-white font-medium px-8 py-3.5 rounded-full shadow-lg transition-colors duration-200 text-sm tracking-wide uppercase"
-                >
-                  Book An Appointment
-                </motion.button>
-              </div>
+             <div className="pt-4 text-center sm:text-left">
+  <motion.button 
+    whileHover={{ scale: 1.03, y: -2 }}
+    whileTap={{ scale: 0.97 }}
+    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+    type="submit" 
+    disabled={loading}
+    className="w-full sm:w-auto bg-[#1fc5d4] hover:bg-[#1bb0be] text-white font-medium px-8 py-3.5 rounded-full shadow-lg transition-colors duration-200 text-sm tracking-wide uppercase disabled:opacity-50 cursor-pointer"
+  >
+    {loading ? 'Processing...' : 'Book An Appointment'}
+  </motion.button>
+</div>
             </form>
           </motion.section>
 
