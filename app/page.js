@@ -6,7 +6,8 @@ import HeroSection from '@/app/components/HeroSection';
 import HeroSplash from '@/app/components/HeroSplash';
 import ServicesAppointmentPage from '@/app/services-appointment/page';
 import TestimonialSection from '@/app/TestimonialSection/page';
-import TeamClient from '@/app/team/TeamClient'; // <-- Import the client component directly
+import TeamClient from '@/app/team/TeamClient'; 
+import FaqAndServicesPage from '@/app/faq-services/page'; // <-- 1. Import your new component here
 
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -51,7 +52,11 @@ export default function Page() {
             <HeroSection />
             <ServicesAppointmentPage />
             <TestimonialSection />
-            <TeamClient /> {/* <-- Capitalized and using the correct component */}
+            <TeamClient />
+            {/* 2. Add your FAQ and Services section here */}
+            <FaqAndServicesPage />
+
+            
           </motion.div>
         )}
       </AnimatePresence>

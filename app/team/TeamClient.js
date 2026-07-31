@@ -1,6 +1,9 @@
+'use client';
+
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 
 const teamSections = [
   [
@@ -9,7 +12,6 @@ const teamSections = [
       name: "Dr. Leslie Taylor",
       specialty: "PEDIATRICIAN",
       description: "Dedicated to providing compassionate healthcare for infants, children, and adolescents, ensuring their healthy growth and development.",
-      // Using a local image path from the public folder
       image: "/images/dr1.png", 
       socials: {
         facebook: "https://facebook.com",
@@ -93,6 +95,16 @@ const teamSections = [
 export default function TeamClient() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const isMounted = useRef(true);
+  const containerRef = useRef(null);
+
+  // Scroll hooks for continuous dynamic motion on scroll up/down
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.97, 1.02, 0.97]);
+  const rotateX = useTransform(scrollYProgress, [0, 0.5, 1], [3, -3, 3]);
 
   useEffect(() => {
     isMounted.current = true;
@@ -119,91 +131,121 @@ export default function TeamClient() {
   };
 
   return (
-    <section className="py-16 px-6 sm:px-12 lg:px-20 bg-white max-w-[1440px] mx-auto">
-      <div className="mb-12">
+    <motion.section 
+      ref={containerRef}
+      style={{ scale, rotateX, transformStyle: 'preserve-3d' }}
+      className="py-16 px-6 sm:px-12 lg:px-20 bg-white max-w-[1440px] mx-auto will-change-transform perspective-[1400px]"
+    >
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.3 }}
+        transition={{ duration: 0.6 }}
+        className="mb-12"
+      >
         <h2 className="text-3xl md:text-4xl font-bold text-neutral-800 tracking-tight">
           Our Team
         </h2>
-      </div>
+      </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 transition-all duration-500">
-        {teamSections[currentIndex].map((doctor) => (
-          <div
-            key={doctor.id}
-            className="flex flex-col sm:flex-row items-center sm:items-start bg-white p-0 rounded-none shadow-none border-0 gap-6"
+      <div className="overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, x: 50, scale: 0.98 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: -50, scale: 0.98 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 transition-all duration-500"
           >
-            <div className="relative w-full sm:w-60 h-64 rounded-2xl overflow-hidden flex-shrink-0 bg-neutral-100 shadow-sm">
-              <Image
-                src={doctor.image}
-                alt={doctor.name}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 240px"
-                priority
-              />
-            </div>
+            {teamSections[currentIndex].map((doctor, idx) => (
+              <motion.div
+                key={doctor.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.2 }}
+                className="flex flex-col sm:flex-row items-center sm:items-start bg-white p-0 rounded-none shadow-none border-0 gap-6 group"
+              >
+                <div className="relative w-full sm:w-60 h-64 rounded-2xl overflow-hidden flex-shrink-0 bg-neutral-100 shadow-sm">
+                  <Image
+                    src={doctor.image}
+                    alt={doctor.name}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 240px"
+                    priority
+                  />
+                </div>
 
-            <div className="flex flex-col justify-between flex-grow text-center sm:text-left py-1">
-              <div>
-                <h3 className="text-2xl font-bold text-neutral-800">
-                  {doctor.name}
-                </h3>
-                <span className="text-xs font-bold tracking-widest mt-1.5 block" style={{ color: "#1CBCCF" }}>
-                  {doctor.specialty}
-                </span>
-                <p className="text-sm text-neutral-500 mt-3 leading-relaxed">
-                  {doctor.description}
-                </p>
-              </div>
+                <div className="flex flex-col justify-between flex-grow text-center sm:text-left py-1">
+                  <div>
+                    <h3 className="text-2xl font-bold text-neutral-800">
+                      {doctor.name}
+                    </h3>
+                    <span className="text-xs font-bold tracking-widest mt-1.5 block" style={{ color: "#1CBCCF" }}>
+                      {doctor.specialty}
+                    </span>
+                    <p className="text-sm text-neutral-500 mt-3 leading-relaxed">
+                      {doctor.description}
+                    </p>
+                  </div>
 
-              <div className="flex items-center justify-center sm:justify-start gap-4 mt-6">
-                <a
-                  href={doctor.socials.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${doctor.name}'s Facebook`}
-                  className="transition-transform duration-200 hover:scale-125"
-                  style={{ color: "#1CBCCF" }}
-                >
-                  <FaFacebookF size={16} />
-                </a>
-                <a
-                  href={doctor.socials.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${doctor.name}'s Twitter`}
-                  className="transition-transform duration-200 hover:scale-125"
-                  style={{ color: "#1CBCCF" }}
-                >
-                  <FaTwitter size={16} />
-                </a>
-                <a
-                  href={doctor.socials.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${doctor.name}'s Instagram`}
-                  className="transition-transform duration-200 hover:scale-125"
-                  style={{ color: "#1CBCCF" }}
-                >
-                  <FaInstagram size={16} />
-                </a>
-                <a
-                  href={doctor.socials.youtube}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${doctor.name}'s YouTube`}
-                  className="transition-transform duration-200 hover:scale-125"
-                  style={{ color: "#1CBCCF" }}
-                >
-                  <FaYoutube size={16} />
-                </a>
-              </div>
-            </div>
-          </div>
-        ))}
+                  <div className="flex items-center justify-center sm:justify-start gap-4 mt-6">
+                    <a
+                      href={doctor.socials.facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${doctor.name}'s Facebook`}
+                      className="transition-transform duration-200 hover:scale-125"
+                      style={{ color: "#1CBCCF" }}
+                    >
+                      <FaFacebookF size={16} />
+                    </a>
+                    <a
+                      href={doctor.socials.twitter}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${doctor.name}'s Twitter`}
+                      className="transition-transform duration-200 hover:scale-125"
+                      style={{ color: "#1CBCCF" }}
+                    >
+                      <FaTwitter size={16} />
+                    </a>
+                    <a
+                      href={doctor.socials.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${doctor.name}'s Instagram`}
+                      className="transition-transform duration-200 hover:scale-125"
+                      style={{ color: "#1CBCCF" }}
+                    >
+                      <FaInstagram size={16} />
+                    </a>
+                    <a
+                      href={doctor.socials.youtube}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${doctor.name}'s YouTube`}
+                      className="transition-transform duration-200 hover:scale-125"
+                      style={{ color: "#1CBCCF" }}
+                    >
+                      <FaYoutube size={16} />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
-      <div className="flex justify-center items-center gap-3 mt-12">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.3 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="flex justify-center items-center gap-3 mt-12"
+      >
         {teamSections.map((_, index) => (
           <button
             key={index}
@@ -217,7 +259,7 @@ export default function TeamClient() {
             style={{ backgroundColor: "#1CBCCF" }}
           />
         ))}
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }

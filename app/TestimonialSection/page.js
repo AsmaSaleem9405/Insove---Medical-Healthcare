@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -36,17 +34,26 @@ const testimonials = [
 ];
 
 const secondaryAvatars = [
-  { src: "/images/img1.png", alt: "User 1", position: "top-2 left-1/3 w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24" },
-  { src: "/images/img2.png", alt: "User 2", position: "top-12 left-4 w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24" },
-  { src: "/images/img3.png", alt: "User 3", position: "bottom-8 left-12 w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24" },
-  { src: "/images/img4.png", alt: "User 4", position: "bottom-2 left-1/2 w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24" },
+  { src: "/images/img1.png", alt: "User 1", position: "top-2 left-1/3" },
+  { src: "/images/img2.png", alt: "User 2", position: "top-12 left-2" },
+  { src: "/images/img3.png", alt: "User 3", position: "bottom-8 left-8" },
+  { src: "/images/img4.png", alt: "User 4", position: "bottom-2 left-1/2" },
 ];
 
 export default function TestimonialSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(1200);
   const containerRef = useRef(null);
 
-  // Scroll hooks for continuous dynamic motion on scroll up/down
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const isSmallLaptop = windowWidth >= 1024 && windowWidth < 1280;
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -64,23 +71,26 @@ export default function TestimonialSection() {
 
   const currentTestimonial = testimonials[currentIndex];
 
+  const avatarSizeClass = isSmallLaptop ? "w-20 h-20" : "w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24";
+  const activeAvatarContainerClass = isSmallLaptop ? "w-32 h-32" : "w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40";
+
   return (
-    <main ref={containerRef} className="w-full bg-cover bg-center overflow-hidden perspective-[1400px]">
+    <main ref={containerRef} className="w-full bg-[url('/images/test-bg.png')] bg-cover bg-center bg-no-repeat overflow-hidden perspective-[1400px]">
       <motion.section 
         style={{ scale, rotateX, transformStyle: 'preserve-3d' }}
         aria-label="Insove Patient Testimonials"
-        className="relative min-h-[550px] overflow-hidden py-12 md:py-16 px-4 sm:px-8 md:px-12 lg:px-20 bg-cover bg-center transition-all duration-700 will-change-transform"
-        style={{ backgroundImage: `url('/images/test-bg.png')`, scale, rotateX, transformStyle: 'preserve-3d' }}
+        className="relative min-h-[550px] overflow-hidden py-12 md:py-16 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 transition-all duration-700 will-change-transform"
       >
-        <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-[400px]">
+        <div className="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center min-h-[400px]">
           
-          {/* Left Side: Floating Avatars Cluster */}
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-6 relative h-[280px] sm:h-[320px] md:h-[380px] flex items-center justify-center"
+            className={`relative h-[280px] sm:h-[320px] md:h-[380px] flex items-center justify-center ${
+              isSmallLaptop ? "lg:col-span-5" : "lg:col-span-6"
+            }`}
           >
             {secondaryAvatars.map((item, index) => (
               <div 
@@ -93,12 +103,12 @@ export default function TestimonialSection() {
                   alt={item.alt} 
                   width={150} 
                   height={150} 
-                  className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 object-cover shadow-amber-50 rounded-full"
+                  className={`${avatarSizeClass} object-cover shadow-amber-50 rounded-full`}
                 />
               </div>
             ))}
 
-            <div className="absolute z-10 w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full p-1 bg-gradient-to-tr from-cyan-400 to-teal-200 shadow-2xl animate-float">
+            <div className={`absolute z-10 rounded-full p-1 bg-gradient-to-tr from-cyan-400 to-teal-200 shadow-2xl animate-float ${activeAvatarContainerClass}`}>
               <div className="w-full h-full rounded-full overflow-hidden relative">
                 <Image 
                   key={currentTestimonial.activePersonImg}
@@ -113,18 +123,17 @@ export default function TestimonialSection() {
             </div>
           </motion.div>
 
-          {/* Right Side: Testimonial Quote & Controls */}
           <motion.div 
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-6 flex flex-col justify-center px-2 sm:px-4 md:px-6 lg:pr-24"
+            className={`flex flex-col justify-center px-2 sm:px-4 md:px-6 ${
+              isSmallLaptop ? "lg:col-span-7 lg:pr-8" : "lg:col-span-6 lg:pr-24"
+            }`}
           >
-            
             <div className="transition-all duration-500 transform translate-y-0">
-              {/* Fully responsive layout using inline container to keep closing icon inline with the text */}
-              <p className="text-slate-700 text-sm sm:text-base md:text-lg leading-relaxed font-normal">
+              <p className={`text-slate-700 leading-relaxed font-normal ${isSmallLaptop ? "text-base" : "text-sm sm:text-base md:text-lg"}`}>
                 <span className="inline-block relative w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 align-sub mr-2">
                   <Image 
                     src="/images/semi.png" 
@@ -144,7 +153,6 @@ export default function TestimonialSection() {
                 </span>
               </p>
 
-              {/* Customer Details */}
               <div className="mt-6">
                 <h3 className="text-slate-900 font-bold text-base sm:text-lg md:text-xl tracking-wide">
                   {currentTestimonial.name}
@@ -155,7 +163,6 @@ export default function TestimonialSection() {
               </div>
             </div>
 
-            {/* Carousel Pagination Dots */}
             <div className="flex items-center gap-2 mt-6 sm:mt-8">
               {testimonials.map((_, index) => (
                 <button
@@ -170,7 +177,6 @@ export default function TestimonialSection() {
                 />
               ))}
             </div>
-
           </motion.div>
 
         </div>
