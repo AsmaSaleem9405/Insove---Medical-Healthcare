@@ -3,12 +3,13 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const faqData = [
   {
     question: 'Why To Believe With Insove Medical Healthcare ?',
     answer:
-      'Diam orci gravida convallis at enim risus viverra. Hac mi tristique in aliquet tincidunt nam lectus nec. Placerat interdum auctor facilisi massa laoreet hendrerit posuere a. Tristique ultricies consectetu at.',
+      'We provide trusted, professional, and patient-centered medical care backed by advanced diagnostic tools and experienced healthcare specialists committed to your health and recovery.',
   },
   {
     question: 'Will We Get Healthcare Updates After Surgery ?',
@@ -31,18 +32,20 @@ const clinicData = {
   laboratory: {
     title: 'Laboratory Analysis',
     description:
-      'Vel non viverra ligula odio ornare turpis mauris. Odio aliquam, tincidunt ut vitae elit risus. Tempor egestas condimentum et ac rutrum dui, odio.Vel non viverra ligula odio ornare turpis mauris.',
+      'Our laboratory provides precise diagnostic testing utilizing advanced medical technology to support accurate health evaluations and reliable results.',
     subDescription:
-      'Aliquam, tincidunt ut vitae elit risus. Tempor egestas condimentum et ac rutrum dui, odio. Non viverra ligula odio ornare turpis mauris. Dio a Vel non viverra ligula odio ornare turpis mauris.',
+      'We ensure rapid turnaround times and comprehensive sample analysis, assisting physicians in delivering effective treatments and patient care.',
     tags: ['Advanced Diagnostics', 'Pathology Testing', 'Microbiology Lab'],
+    image: '/icons/hand.png',
   },
   cardiology: {
     title: 'Cardiology Clinic',
     description:
-      'Vel non viverra ligula odio ornare turpis mauris. Odio aliquam, tincidunt ut vitae elit risus. Tempor egestas condimentum et ac rutrum dui, odio.Vel non viverra ligula odio ornare turpis mauris.',
+      'Expert cardiac care focused on the prevention, early detection, and treatment of heart conditions using state-of-the-art cardiovascular technology.',
     subDescription:
-      'Aliquam, tincidunt ut vitae elit risus. Tempor egestas condimentum et ac rutrum dui, odio. Non viverra ligula odio ornare turpis mauris. Dio a Vel non viverra ligula odio ornare turpis mauris.',
-    tags: ['Neurocritical Care', 'Neuro Oncology', 'Geriatric Neurology'],
+      'Our dedicated cardiologists provide personalized care plans, routine heart screenings, and advanced diagnostic monitoring for optimal heart health.',
+    tags: ['Cardiac Monitoring', 'ECG Testing', 'Heart Health'],
+    image: '/icons/hand.png',
   },
   gynecology: {
     title: 'Gynecology Clinic',
@@ -51,6 +54,7 @@ const clinicData = {
     subDescription:
       'Our dedicated specialists prioritize patient well-being, offering modern diagnostic technology in a safe and supportive medical environment.',
     tags: ['Prenatal Care', 'Routine Screening', 'Women Wellness'],
+    image: '/icons/hand.png',
   },
   pathology: {
     title: 'Pathology Clinic',
@@ -59,6 +63,7 @@ const clinicData = {
     subDescription:
       'Fast turnaround times and detailed reporting to assist your primary healthcare providers in formulating effective treatments.',
     tags: ['Biopsy Testing', 'Cytopathology', 'Blood Chemistry'],
+    image: '/icons/hand.png',
   },
   pediatrics: {
     title: 'Pediatrics Clinic',
@@ -67,6 +72,7 @@ const clinicData = {
     subDescription:
       'Friendly and gentle care environments designed to keep young patients comfortable while receiving necessary vaccinations and checkups.',
     tags: ['Vaccinations', 'Growth Monitoring', 'Neonatal Care'],
+    image: '/icons/hand.png',
   },
   neurology: {
     title: 'Neurology Clinic',
@@ -75,12 +81,13 @@ const clinicData = {
     subDescription:
       'Personalized neuro-rehabilitation programs designed to improve neurological function and enhance everyday quality of life.',
     tags: ['Stroke Care', 'EEG Testing', 'Headache Clinic'],
+    image: '/icons/hand.png',
   },
 };
 
 export default function InsoveFaqAndServicesPage() {
   const [openFaq, setOpenFaq] = useState(0);
-  const [activeTab, setActiveTab] = useState('cardiology');
+  const [activeTab, setActiveTab] = useState('laboratory');
 
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);
@@ -88,7 +95,6 @@ export default function InsoveFaqAndServicesPage() {
 
   return (
     <>
-      {/* Page-Level SEO Metadata Configuration */}
       <Head>
         <title>FAQ & Clinical Services | Insove Medical Healthcare</title>
         <meta
@@ -102,21 +108,34 @@ export default function InsoveFaqAndServicesPage() {
         <link rel="canonical" href="https://yourdomain.com/services-faq" />
       </Head>
 
-      <main className="w-full min-h-screen bg-white text-slate-800 font-sans">
+      <main className="w-full min-h-screen bg-white text-slate-800 font-sans perspective-[1400px]">
         
         {/* SECTION 1: FAQ Accordion */}
         <section className="w-full py-16 px-4 md:px-8 max-w-5xl mx-auto">
-          <div className="text-center mb-12">
+          <motion.div 
+            initial={{ opacity: 0, y: -20, rotateX: -10 }}
+            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="text-center mb-12"
+          >
             <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
               We’ve Got Answers
             </h1>
-          </div>
+          </motion.div>
 
           <div className="divide-y divide-slate-200 border-t border-b border-slate-200">
             {faqData.map((faq, index) => {
               const isOpen = openFaq === index;
               return (
-                <div key={index} className="py-5 transition-all duration-300">
+                <motion.div 
+                  key={index} 
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="py-5 transition-all duration-300"
+                >
                   <button
                     onClick={() => toggleFaq(index)}
                     className="w-full flex justify-between items-center text-left focus:outline-none group"
@@ -124,29 +143,49 @@ export default function InsoveFaqAndServicesPage() {
                     <span className="text-lg md:text-xl font-semibold text-slate-800 group-hover:text-cyan-600 transition-colors">
                       {faq.question}
                     </span>
-                    <span className="ml-4 flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 text-slate-600 font-bold text-lg group-hover:bg-cyan-50 group-hover:text-cyan-600 transition-colors">
+                    <motion.span 
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="ml-4 flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 text-slate-600 font-bold text-lg group-hover:bg-cyan-50 group-hover:text-cyan-600 transition-colors"
+                    >
                       {isOpen ? '–' : '+'}
-                    </span>
+                    </motion.span>
                   </button>
-                  {isOpen && (
-                    <div className="mt-3 pr-12 text-slate-600 text-sm md:text-base leading-relaxed animate-fadeIn">
-                      <p>{faq.answer}</p>
-                    </div>
-                  )}
-                </div>
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div 
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <div className="mt-3 pr-12 text-slate-600 text-sm md:text-base leading-relaxed">
+                          <p>{faq.answer}</p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
               );
             })}
           </div>
         </section>
 
-        {/* SECTION 2: Clinic Services Card with Light Sky Background Image */}
+        {/* SECTION 2: Clinic Services Card */}
         <section className="w-full py-16 px-4 md:px-8 flex justify-center items-center">
-          <div className="relative w-full max-w-6xl rounded-3xl overflow-hidden shadow-2xl p-6 md:p-12 bg-slate-50 border border-slate-100">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95, rotateX: 5 }}
+            whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            style={{ transformStyle: 'preserve-3d' }}
+            className="relative w-full max-w-6xl rounded-3xl overflow-hidden shadow-2xl p-6 md:p-12 bg-slate-50 border border-slate-100"
+          >
             
-            {/* Light Sky Background Image from Gallery */}
             <div className="absolute inset-0 z-0 opacity-25">
               <Image
-                src="/images/Departments.png" // Replace with your gallery background image path
+                src="/images/Departments.png"
                 alt="Light Sky Background"
                 fill
                 priority
@@ -154,8 +193,7 @@ export default function InsoveFaqAndServicesPage() {
               />
             </div>
 
-<div className="absolute inset-0 z-[1] bg-[#E8F0F1] backdrop-blur-[1px] pointer-events-none" />
-            {/* Subtle Gradient Overlay for Readability */}
+            <div className="absolute inset-0 z-[1] bg-[#E8F0F1] backdrop-blur-[1px] pointer-events-none" />
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
@@ -171,8 +209,10 @@ export default function InsoveFaqAndServicesPage() {
                 ].map((tab) => {
                   const isActive = activeTab === tab.key;
                   return (
-                    <button
+                    <motion.button
                       key={tab.key}
+                      whileHover={{ scale: 1.02, x: 4 }}
+                      whileTap={{ scale: 0.98 }}
                       onClick={() => setActiveTab(tab.key)}
                       className={`text-left text-xs md:text-sm font-bold tracking-wider py-2.5 px-3 rounded-lg transition-all ${
                         isActive
@@ -181,70 +221,82 @@ export default function InsoveFaqAndServicesPage() {
                       }`}
                     >
                       {tab.label}
-                    </button>
+                    </motion.button>
                   );
                 })}
               </div>
 
-              {/* Right Column: Dynamic Clinic Details & Graphics */}
+              {/* Right Column: Dynamic Clinic Details & Image */}
               <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div className="space-y-4">
-                  <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
-                    {clinicData[activeTab].title}
-                  </h2>
-                  <p className="text-slate-600 text-sm md:text-base leading-relaxed">
-                    {clinicData[activeTab].description}
-                  </p>
-                  <p className="text-slate-500 text-xs md:text-sm leading-relaxed">
-                    {clinicData[activeTab].subDescription}
-                  </p>
+                <AnimatePresence mode="wait">
+                  <motion.div 
+                    key={activeTab + "-content"}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.4 }}
+                    className="space-y-4"
+                  >
+                    <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
+                      {clinicData[activeTab].title}
+                    </h2>
+                    <p className="text-slate-600 text-sm md:text-base leading-relaxed">
+                      {clinicData[activeTab].description}
+                    </p>
+                    <p className="text-slate-500 text-xs md:text-sm leading-relaxed">
+                      {clinicData[activeTab].subDescription}
+                    </p>
 
-                  {/* Sub-tags */}
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    {clinicData[activeTab].tags.map((tag, idx) => (
-                      <span
-                        key={idx}
-                        className="text-xs font-semibold text-cyan-600 hover:text-cyan-700 cursor-pointer pr-3"
+                    {/* Sub-tags in a single wrapping line with separators */}
+                    <div className="flex flex-wrap items-center gap-y-2 pt-2 whitespace-nowrap">
+                      {clinicData[activeTab].tags.map((tag, idx) => (
+                        <span key={idx} className="inline-flex items-center text-xs font-semibold text-cyan-600">
+                          <span className="hover:text-cyan-700 cursor-pointer">{tag}</span>
+                          {idx < clinicData[activeTab].tags.length - 1 && (
+                            <span className="text-slate-300 mx-3">|</span>
+                          )}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Learn More CTA Button */}
+                    <div className="pt-4">
+                      <motion.a
+                        whileHover={{ scale: 1.05, translateZ: 20 }}
+                        whileTap={{ scale: 0.95 }}
+                        href="#contact"
+                        className="inline-block bg-cyan-500 hover:bg-cyan-600 text-white font-semibold text-sm px-7 py-3 rounded-full shadow-lg hover:shadow-cyan-500/25 transition-all duration-300"
                       >
-                        {tag} {idx < clinicData[activeTab].tags.length - 1 && <span className="text-slate-300 ml-2">|</span>}
-                      </span>
-                    ))}
-                  </div>
+                        LEARN MORE
+                      </motion.a>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
 
-                  {/* Learn More CTA Button */}
-                  <div className="pt-4">
-                    <a
-                      href="#contact"
-                      className="inline-block bg-cyan-500 hover:bg-cyan-600 text-white font-semibold text-sm px-7 py-3 rounded-full shadow-lg hover:shadow-cyan-500/25 transition-all duration-300"
-                    >
-                      LEARN MORE
-                    </a>
-                  </div>
-                </div>
-
-                {/* Vector Healthcare Illustration */}
-                <div className="hidden md:flex justify-center items-center">
-                  <div className="relative w-48 h-48 opacity-80">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      className="w-full h-full text-slate-300"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-                      />
-                    </svg>
-                  </div>
-                </div>
+                {/* Right Column Image */}
+                <AnimatePresence mode="wait">
+                  <motion.div 
+                    key={activeTab + "-image"}
+                    initial={{ opacity: 0, scale: 0.8, rotateY: 15 }}
+                    animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                    exit={{ opacity: 0, scale: 0.8, rotateY: -15 }}
+                    transition={{ duration: 0.5 }}
+                    style={{ transformStyle: 'preserve-3d' }}
+                    className="relative w-full h-64 md:h-80 flex justify-center items-center"
+                  >
+                    <Image
+                      src={clinicData[activeTab].image}
+                      alt={clinicData[activeTab].title}
+                      fill
+                      className="object-contain drop-shadow-xl transition-all duration-500"
+                    />
+                  </motion.div>
+                </AnimatePresence>
 
               </div>
 
             </div>
-          </div>
+          </motion.div>
         </section>
 
       </main>
