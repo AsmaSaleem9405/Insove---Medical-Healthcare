@@ -7,7 +7,8 @@ import HeroSplash from '@/app/components/HeroSplash';
 import ServicesAppointmentPage from '@/app/services-appointment/page';
 import TestimonialSection from '@/app/TestimonialSection/page';
 import TeamClient from '@/app/team/TeamClient'; 
-import FaqAndServicesPage from '@/app/faq-services/page'; // <-- 1. Import your new component here
+import FaqAndServicesPage from '@/app/faq-services/page';
+import RecentPosts from '@/app/components/RecentPosts'; // <-- 1. Import your blog component here
 
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -53,10 +54,11 @@ export default function Page() {
             <ServicesAppointmentPage />
             <TestimonialSection />
             <TeamClient />
-            {/* 2. Add your FAQ and Services section here */}
             <FaqAndServicesPage />
-
             
+            {/* 2. Add your Recent Posts Blog Section here */}
+            <RecentPosts />
+
           </motion.div>
         )}
       </AnimatePresence>
