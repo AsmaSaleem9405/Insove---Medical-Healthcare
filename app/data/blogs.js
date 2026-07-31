@@ -6,7 +6,7 @@ export const blogsData = [
     category: "Medical",
     date: "Jan 2, 2023",
     image: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80",
-    excerpt: "It's normal to feel anxiety, worry and grief any time you're diagnosed with a condition that's certainly true...",
+    excerpt: "Maintaining a healthy heart requires conscious dietary decisions....",
     content: "Maintaining a healthy heart requires conscious dietary decisions. Consuming excessive trans fats, sodium, and refined sugars can drastically increase cardiovascular risks over time. In this comprehensive guide, we explore the top 10 foods you should limit or avoid to ensure optimal heart health, long-term vitality, and lower cholesterol levels. Focus on incorporating fresh greens, omega-3 fatty acids, and whole grains into your daily meals instead."
   },
   {
@@ -16,7 +16,7 @@ export const blogsData = [
     category: "Mental Health",
     date: "Jan 3, 2023",
     image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
-    excerpt: "It's normal to feel anxiety, worry and grief any time you're diagnosed with a condition that's certainly true...",
+    excerpt: "Life throws unexpected challenges our way, often triggering stress and anxiety. Learning how to regulate...",
     content: "Life throws unexpected challenges our way, often triggering stress and anxiety. Learning how to regulate your nervous system during hard situations is essential for mental clarity and emotional stability. Techniques such as deep diaphragm breathing, mindfulness meditation, and structured time management can help you stay grounded, resilient, and completely calm under intense pressure."
   },
   {
@@ -26,7 +26,7 @@ export const blogsData = [
     category: "Dental",
     date: "Jan 4, 2023",
     image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80",
-    excerpt: "It's normal to feel anxiety, worry and grief any time you're diagnosed with a condition that's certainly true...",
+    excerpt: "A bright, healthy smile is a reflection of consistent dental hygiene habits...",
     content: "A bright, healthy smile is a reflection of consistent dental hygiene habits. From proper brushing techniques and daily flossing to limiting acidic drinks and regular dental checkups, protecting your enamel is vital. Discover expert-recommended daily practices to prevent cavities, strengthen your teeth, and maintain pristine oral health for life."
   },
   {
@@ -35,7 +35,7 @@ export const blogsData = [
     title: "Understanding The Basics Of Sleep Hygiene",
     category: "Wellness",
     date: "Jan 5, 2023",
-    image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=800&q=80", // Fixed working image link
+    image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=800&q=80",
     excerpt: "Quality sleep is the foundation of physical recovery, mental sharpness, and balanced hormonal health...",
     content: "Quality sleep is the foundation of physical recovery, mental sharpness, and balanced hormonal health. Establishing a fixed sleep schedule, reducing blue light exposure before bed, and creating a cool, dark sleeping environment can transform your nightly rest and boost your daytime productivity."
   },
