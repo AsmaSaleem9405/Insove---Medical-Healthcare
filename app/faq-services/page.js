@@ -146,7 +146,7 @@ export default function InsoveFaqAndServicesPage() {
             {/* Light Sky Background Image from Gallery */}
             <div className="absolute inset-0 z-0 opacity-25">
               <Image
-                src="/path-to-your-light-sky-bg.jpg" // Replace with your gallery background image path
+                src="/images/Departments.png" // Replace with your gallery background image path
                 alt="Light Sky Background"
                 fill
                 priority
@@ -154,8 +154,8 @@ export default function InsoveFaqAndServicesPage() {
               />
             </div>
 
+<div className="absolute inset-0 z-[1] bg-[#E8F0F1] backdrop-blur-[1px] pointer-events-none" />
             {/* Subtle Gradient Overlay for Readability */}
-            <div className="absolute inset-0 z-0 bg-gradient-to-r from-slate-50/90 via-slate-50/70 to-transparent pointer-events-none" />
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
