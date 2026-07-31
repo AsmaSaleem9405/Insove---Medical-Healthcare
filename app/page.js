@@ -9,9 +9,9 @@ import TestimonialSection from '@/app/TestimonialSection/page';
 import TeamClient from '@/app/team/TeamClient'; 
 import FaqAndServicesPage from '@/app/faq-services/page';
 import RecentPosts from '@/app/components/RecentPosts'; // <-- 1. Import your blog component here
-
+import NewsletterPage from '@/app/newsletter/page';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import Footer from '@/app/components/Footer';
 export default function Page() {
   const [showMain, setShowMain] = useState(false);
 
@@ -58,7 +58,8 @@ export default function Page() {
             
             {/* 2. Add your Recent Posts Blog Section here */}
             <RecentPosts />
-
+<NewsletterPage />
+<Footer />
           </motion.div>
         )}
       </AnimatePresence>
