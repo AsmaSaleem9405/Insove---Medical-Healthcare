@@ -3,12 +3,12 @@ import Image from "next/image";
 import React, { useState, useEffect } from 'react';
 import { Search, Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
-
+import { useRouter } from 'next/navigation';
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeSection, setActiveSection] = useState("home");
-
+const router = useRouter();
   // Track scrolling to update active navbar item based on section IDs on the page
   useEffect(() => {
     // Updated "blogs" to "blog" to match your section ID
@@ -142,19 +142,16 @@ export default function Header() {
           </form>
 
           {/* Desktop Book Now Button */}
-          <div className="hidden md:block">
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                const el = document.getElementById('CTA') || document.getElementById('contact');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="px-7 py-2.5 mr-27 rounded-full border border-[#1CBCCF] text-slate-700 font-medium text-sm hover:bg-[#1CBCCF] hover:text-white transition-all duration-200 cursor-pointer"
-            >
-              BOOK NOW
-            </motion.button>
-          </div>
+        <div className="hidden md:block">
+  <motion.button
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    onClick={() => router.push('#services')} // Replace with your page route
+    className="px-7 py-2.5 mr-27 rounded-full border border-[#1CBCCF] text-slate-700 font-medium text-sm hover:bg-[#1CBCCF] hover:text-white transition-all duration-200 cursor-pointer"
+  >
+    BOOK NOW
+  </motion.button>
+</div>
 
           {/* Mobile Hamburger Button */}
           <button 
@@ -259,12 +256,15 @@ export default function Header() {
 
             {/* Mobile Smaller Book Now Button */}
             <div className="w-full pt-1">
-              <button 
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-5 py-2 rounded-full border border-[#1CBCCF] text-slate-700 font-medium text-xs hover:bg-[#1CBCCF] hover:text-white transition-all duration-200"
-              >
-                BOOK NOW
-              </button>
+               <button
+      onClick={() => {
+        setMobileMenuOpen(false);
+        router.push('#services'); // Replace with your page route
+      }}
+      className="px-5 py-2 rounded-full border border-[#1CBCCF] text-slate-700 font-medium text-xs hover:bg-[#1CBCCF] hover:text-white transition-all duration-200"
+    >
+      BOOK NOW
+    </button>
             </div>
           </div>
 
