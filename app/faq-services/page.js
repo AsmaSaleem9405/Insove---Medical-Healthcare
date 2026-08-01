@@ -108,7 +108,8 @@ export default function InsoveFaqAndServicesPage() {
         <link rel="canonical" href="https://yourdomain.com/services-faq" />
       </Head>
 
-      <main className="w-full min-h-screen bg-white text-slate-800 font-sans perspective-[1400px]">
+      <main id="FAQ"
+       className="w-full min-h-screen bg-white text-slate-800 font-sans perspective-[1400px]">
         
         {/* SECTION 1: FAQ Accordion */}
         <section className="w-full py-16 px-4 md:px-8 max-w-5xl mx-auto">

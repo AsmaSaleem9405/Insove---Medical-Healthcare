@@ -77,7 +77,8 @@ export default function TestimonialSection() {
   const activeAvatarContainerClass = isSmallLaptop ? "w-32 h-32" : "w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40";
 
   return (
-    <main ref={containerRef} className="w-full bg-[url('/images/test-bg.png')] bg-cover bg-center bg-no-repeat overflow-hidden perspective-[1400px]">
+    <main id="testimonials"
+     ref={containerRef} className="w-full bg-[url('/images/test-bg.png')] bg-cover bg-center bg-no-repeat overflow-hidden perspective-[1400px]">
       <motion.section 
         style={{ scale, rotateX, transformStyle: 'preserve-3d' }}
         aria-label="Insove Patient Testimonials"

@@ -115,7 +115,8 @@ export default function ServicesAppointmentPage() {
   };
 
   return (
-    <main ref={containerRef} className="w-full bg-white py-12 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[#3bc5d4] selection:text-white overflow-hidden perspective-[1400px]">
+    <main id="services"
+     ref={containerRef} className="w-full bg-white py-12 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[#3bc5d4] selection:text-white overflow-hidden perspective-[1400px]">
       
       {/* Main container with framer-motion 3D scroll reactions working both up and down */}
       <motion.div 

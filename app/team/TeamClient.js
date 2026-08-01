@@ -131,7 +131,7 @@ export default function TeamClient() {
   };
 
   return (
-    <motion.section 
+    <motion.section id="team"
       ref={containerRef}
       style={{ scale, rotateX, transformStyle: 'preserve-3d' }}
       className="py-16 px-6 sm:px-12 lg:px-20 bg-white max-w-[1440px] mx-auto will-change-transform perspective-[1400px]"
