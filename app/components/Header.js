@@ -2,7 +2,7 @@
 import Image from "next/image";
 
 import React, { useState } from 'react';
-import { MapPin, Phone, Search, Menu, X } from 'lucide-react';
+import { Search, Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function Header() {
@@ -66,7 +66,7 @@ export default function Header() {
               width={16}
               height={16}
               className="object-contain"
-            />       
+            />     
             <span className="text-slate-600 font-normal">123 Arling, Miola, NY</span>
           </div>
           <div className="flex items-center space-x-2">
@@ -76,7 +76,7 @@ export default function Header() {
               width={16}
               height={16}
               className="object-contain"
-            />       
+            />     
             <span className="font-normal text-slate-600">(+487) 384 9452</span>
           </div>
         </motion.div>
@@ -137,17 +137,19 @@ export default function Header() {
           <nav className="flex items-center space-x-5 text-sm font-normal">
             <a href="#" className="text-[#1CBCCF] font-medium py-2">Home</a>
             <span className="text-slate-200 font-light">|</span>
-            <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Services</a>
+            <a href="#services" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Services</a>
             <span className="text-slate-200 font-light">|</span>
-            <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Testimonials</a>
+            <a href="#testimonials" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Testimonials</a>
             <span className="text-slate-200 font-light">|</span>
-            <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Team</a>
+            <a href="#team" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Team</a>
             <span className="text-slate-200 font-light">|</span>
-            <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">FAQ</a>
+            <a href="#FAQ" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">FAQ</a>
             <span className="text-slate-200 font-light">|</span>
-            <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Blogs</a>
+            <a href="#blog" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Blogs</a>
              <span className="text-slate-200 font-light">|</span>
-            <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Contacts</a>
+             <a href="#CTA" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">CTA</a>
+             <span className="text-slate-200 font-light">|</span>
+            <a href="#contact" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Contacts</a>
           </nav>
 
           {/* Search Form (Clickable & Redirects on Enter) */}
@@ -192,23 +194,25 @@ export default function Header() {
           <div className="flex flex-col items-center space-y-4 text-center w-full mt-1">
             <nav className="flex flex-col items-center space-y-3 text-base font-medium w-full">
               <a href="#" className="text-[#1CBCCF] py-1" onClick={() => setMobileMenuOpen(false)}>Home</a>
-              <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>services</a>
-              <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Testimonials</a>
-              <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Team</a>
-              <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
-              <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Blogs</a>
-                            <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Contact</a>
+              <a href="#services" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>services</a>
+              <a href="#testimonials" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Testimonials</a>
+              <a href="#team" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Team</a>
+              <a href="#FAQ" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
+              <a href="#blogs" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Blogs</a>
+                                       <a href="#CTA" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>CTA</a>
+
+                    <a href="#contact" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Contact</a>
 
             </nav>
 
             {/* Contact Info with separation line colored #1CBCCF */}
             <div className="flex flex-col items-center space-y-2 text-sm text-slate-600 pt-3 border-t border-[#1CBCCF] w-full">
               <div className="flex items-center justify-center space-x-2">
-                <Image src="/icons/location.png" alt="Location" width={16} height={16} className="object-contain" />        
+                <Image src="/icons/location.png" alt="Location" width={16} height={16} className="object-contain" />       
                 <span>123 Arling, Miola, NY</span>
               </div>
               <div className="flex items-center justify-center space-x-2">
-                <Image src="/icons/call.png" alt="Phone" width={16} height={16} className="object-contain" />        
+                <Image src="/icons/call.png" alt="Phone" width={16} height={16} className="object-contain" />       
                 <span>(+487) 384 9452</span>
               </div>
             </div>

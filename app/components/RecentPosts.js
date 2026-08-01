@@ -30,7 +30,8 @@ export default function RecentPosts() {
   };
 
   return (
-    <section className="bg-white py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden" style={{ perspective: "1200px" }}>
+    <section id="blog"
+     className="bg-white py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden" style={{ perspective: "1200px" }}>
       {/* Section Header Animation */}
       <motion.h2 
         initial={{ opacity: 0, y: -20 }}

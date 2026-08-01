@@ -14,7 +14,7 @@ export default function NewsletterPage() {
   const duplicatedBrands = [...brands, ...brands, ...brands];
 
   return (
-    <motion.main 
+    <motion.main id="CTA"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
