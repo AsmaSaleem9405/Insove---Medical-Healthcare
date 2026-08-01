@@ -11,7 +11,8 @@ export default function Header() {
 
   // Track scrolling to update active navbar item based on section IDs on the page
   useEffect(() => {
-    const sections = ["home", "services", "testimonials", "team", "FAQ", "blogs", "CTA", "contact"];
+    // Updated "blogs" to "blog" to match your section ID
+    const sections = ["home", "services", "testimonials", "team", "FAQ", "blog", "CTA", "contact"];
     
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 200; // Offset for better detection
@@ -49,7 +50,7 @@ export default function Header() {
     } else if (query.includes("faq")) {
       targetId = "FAQ";
     } else if (query.includes("blog")) {
-      targetId = "blogs";
+      targetId = "blog";
     } else if (query.includes("cont")) {
       targetId = "contact";
     } else if (query.includes("cta") || query.includes("book")) {
@@ -186,7 +187,7 @@ export default function Header() {
             <span className="text-slate-200 font-light">|</span>
             <a href="#FAQ" className={`${activeSection === 'FAQ' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-2`}>FAQ</a>
             <span className="text-slate-200 font-light">|</span>
-            <a href="#blogs" className={`${activeSection === 'blogs' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-2`}>Blogs</a>
+            <a href="#blog" className={`${activeSection === 'blog' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-2`}>Blogs</a>
             <span className="text-slate-200 font-light">|</span>
             <a href="#CTA" className={`${activeSection === 'CTA' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-2`}>CTA</a>
             <span className="text-slate-200 font-light">|</span>
@@ -239,7 +240,7 @@ export default function Header() {
               <a href="#testimonials" className={`${activeSection === 'testimonials' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-1`} onClick={() => setMobileMenuOpen(false)}>Testimonials</a>
               <a href="#team" className={`${activeSection === 'team' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-1`} onClick={() => setMobileMenuOpen(false)}>Team</a>
               <a href="#FAQ" className={`${activeSection === 'FAQ' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-1`} onClick={() => setMobileMenuOpen(false)}>FAQ</a>
-              <a href="#blogs" className={`${activeSection === 'blogs' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-1`} onClick={() => setMobileMenuOpen(false)}>Blogs</a>
+              <a href="#blog" className={`${activeSection === 'blog' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-1`} onClick={() => setMobileMenuOpen(false)}>Blogs</a>
               <a href="#CTA" className={`${activeSection === 'CTA' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-1`} onClick={() => setMobileMenuOpen(false)}>CTA</a>
               <a href="#contact" className={`${activeSection === 'contact' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-1`} onClick={() => setMobileMenuOpen(false)}>Contact</a>
             </nav>

@@ -19,7 +19,7 @@ export default function BlogDetailPage({ params }) {
   }
 
   return (
-    <div id="blogs"
+    <div
     className="w-full min-h-screen bg-white overflow-hidden" style={{ perspective: "1200px" }}>
       {/* Full width wrapper set to pure white */}
       <main className="min-h-screen bg-white text-gray-950 py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
