@@ -11,18 +11,17 @@ import { MdEmail, MdPhone } from "react-icons/md";
 export default function Footer() {
   const quickLinksCol1 = [
     { name: "Home", href: "/" },
-    { name: "Doctors", href: "/doctors" },
-    { name: "Department", href: "/department" },
-    { name: "Services", href: "/services" },
-    { name: "Blog", href: "/blog" },
+    { name: "Services", href: "#services" },
+    { name: "Testimonials", href: "#testimonials" },
+    { name: "Team", href: "#team" },
   ];
 
   const quickLinksCol2 = [
-    { name: "Our Pricing", href: "/pricing" },
-    { name: "Contact", href: "/contact" },
-    { name: "Careers", href: "/careers" },
-    { name: "Faqs", href: "/faqs" },
-    { name: "Privacy Policy", href: "/privacy-policy" },
+        { name: "FAQ", href: "#FAQ" },
+
+    { name: "Blogs", href: "#blog" },
+    { name: "CTA", href: "#CTA" },
+    { name: "Contacts", href: "#contact" },
   ];
 
   const openingHours = [
