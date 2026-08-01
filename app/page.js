@@ -8,15 +8,17 @@ import ServicesAppointmentPage from '@/app/services-appointment/page';
 import TestimonialSection from '@/app/TestimonialSection/page';
 import TeamClient from '@/app/team/TeamClient'; 
 import FaqAndServicesPage from '@/app/faq-services/page';
-import RecentPosts from '@/app/components/RecentPosts'; // <-- 1. Import your blog component here
+import RecentPosts from '@/app/components/RecentPosts';
 import NewsletterPage from '@/app/newsletter/page';
 import { motion, AnimatePresence } from 'framer-motion';
 import Footer from '@/app/components/Footer';
+
 export default function Page() {
   const [showMain, setShowMain] = useState(false);
 
   return (
-    <main className="min-h-screen relative overflow-hidden bg-slate-950">
+    // Changed overflow-hidden to overflow-visible (or remove overflow-hidden)
+    <main className="min-h-screen relative overflow-visible bg-slate-950">
       <AnimatePresence mode="wait">
         {!showMain ? (
           /* 1. Splash Screen View */
@@ -47,7 +49,8 @@ export default function Page() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="min-h-screen bg-slate-50 relative overflow-hidden"
+            // Changed overflow-hidden to overflow-visible here too
+            className="min-h-screen bg-slate-50 relative overflow-visible"
           >
             <Header />
             <HeroSection />
@@ -55,11 +58,9 @@ export default function Page() {
             <TestimonialSection />
             <TeamClient />
             <FaqAndServicesPage />
-            
-            {/* 2. Add your Recent Posts Blog Section here */}
             <RecentPosts />
-<NewsletterPage />
-<Footer />
+            <NewsletterPage />
+            <Footer />
           </motion.div>
         )}
       </AnimatePresence>

@@ -30,7 +30,8 @@ export default function Header() {
   };
 
   return (
-    <header className="w-full bg-white border-b border-slate-100 shadow-sm relative">
+    // Added sticky top-0 z-50 here to keep it fixed on all sections
+    <header className="w-full bg-white border-b border-slate-100 shadow-sm relative sticky top-0 z-50">
       {/* Top Bar: Logo, Location, Phone, Search, Book Now */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
         
@@ -65,7 +66,7 @@ export default function Header() {
               width={16}
               height={16}
               className="object-contain"
-            />        
+            />       
             <span className="text-slate-600 font-normal">123 Arling, Miola, NY</span>
           </div>
           <div className="flex items-center space-x-2">
@@ -75,7 +76,7 @@ export default function Header() {
               width={16}
               height={16}
               className="object-contain"
-            />        
+            />       
             <span className="font-normal text-slate-600">(+487) 384 9452</span>
           </div>
         </motion.div>
