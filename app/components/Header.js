@@ -136,15 +136,17 @@ export default function Header() {
           <nav className="flex items-center space-x-5 text-sm font-normal">
             <a href="#" className="text-[#1CBCCF] font-medium py-2">Home</a>
             <span className="text-slate-200 font-light">|</span>
-            <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Doctors</a>
-            <span className="text-slate-200 font-light">|</span>
-            <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Department</a>
-            <span className="text-slate-200 font-light">|</span>
             <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Services</a>
             <span className="text-slate-200 font-light">|</span>
-            <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Blog</a>
+            <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Testimonials</a>
             <span className="text-slate-200 font-light">|</span>
-            <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Contact</a>
+            <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Team</a>
+            <span className="text-slate-200 font-light">|</span>
+            <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">FAQ</a>
+            <span className="text-slate-200 font-light">|</span>
+            <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Blogs</a>
+             <span className="text-slate-200 font-light">|</span>
+            <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Contacts</a>
           </nav>
 
           {/* Search Form (Clickable & Redirects on Enter) */}
@@ -189,11 +191,13 @@ export default function Header() {
           <div className="flex flex-col items-center space-y-4 text-center w-full mt-1">
             <nav className="flex flex-col items-center space-y-3 text-base font-medium w-full">
               <a href="#" className="text-[#1CBCCF] py-1" onClick={() => setMobileMenuOpen(false)}>Home</a>
-              <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Doctors</a>
-              <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Department</a>
-              <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Services</a>
-              <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Blog</a>
-              <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Contact</a>
+              <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>services</a>
+              <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Testimonials</a>
+              <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Team</a>
+              <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
+              <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Blogs</a>
+                            <a href="#" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Contact</a>
+
             </nav>
 
             {/* Contact Info with separation line colored #1CBCCF */}
