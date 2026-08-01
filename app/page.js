@@ -26,9 +26,16 @@ export default function Page() {
         style={{ backgroundImage: "url('/images/blur.jpg')" }}
       />
 
+      {/* Header placed outside AnimatePresence so it stays permanently fixed across the entire website */}
+      {showMain && (
+        <div className="fixed top-0 left-0 right-0 z-50 w-full">
+          <Header />
+        </div>
+      )}
+
       <AnimatePresence mode="wait">
         {!showMain ? (
-          /* 1. Splash Screen View: Fixed full viewport layout with the scrollbar on the right */
+          /* 1. Splash Screen View */
           <motion.div
             key="splash"
             initial={{ opacity: 0 }}
@@ -50,9 +57,9 @@ export default function Page() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 min-h-screen bg-slate-50 overflow-x-hidden"
+            // Added pt-24 so content starts below the fixed header cleanly
+            className="relative z-10 min-h-screen bg-slate-50 overflow-x-hidden pt-24"
           >
-            <Header />
             <HeroSection />
             <ServicesAppointmentPage />
             <TestimonialSection />
