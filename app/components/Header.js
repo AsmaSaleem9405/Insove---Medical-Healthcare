@@ -1,31 +1,67 @@
 'use client';
 import Image from "next/image";
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeSection, setActiveSection] = useState("home");
+
+  // Track scrolling to update active navbar item based on section IDs on the page
+  useEffect(() => {
+    const sections = ["home", "services", "testimonials", "team", "FAQ", "blogs", "CTA", "contact"];
+    
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 200; // Offset for better detection
+      
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const top = element.offsetTop;
+          const height = element.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (!searchQuery.trim()) return;
     
     const query = searchQuery.toLowerCase().trim();
-    if (query.includes("doc")) {
-      window.location.href = "/doctors";
-    } else if (query.includes("dept") || query.includes("department")) {
-      window.location.href = "/department";
+    let targetId = "";
+
+    if (query.includes("doc") || query.includes("team")) {
+      targetId = "team";
     } else if (query.includes("serv")) {
-      window.location.href = "/services";
+      targetId = "services";
+    } else if (query.includes("test")) {
+      targetId = "testimonials";
+    } else if (query.includes("faq")) {
+      targetId = "FAQ";
     } else if (query.includes("blog")) {
-      window.location.href = "/blog";
+      targetId = "blogs";
     } else if (query.includes("cont")) {
-      window.location.href = "/contact";
+      targetId = "contact";
+    } else if (query.includes("cta") || query.includes("book")) {
+      targetId = "CTA";
     } else {
-      window.location.href = `/search?q=${encodeURIComponent(searchQuery)}`;
+      targetId = "home";
+    }
+
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      setSearchQuery("");
     }
   };
 
@@ -41,7 +77,8 @@ export default function Header() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
           transition={{ duration: 0.6 }}
-          className="relative w-27 h-27 flex items-center md:ml-30 justify-center"
+          className="relative w-27 h-27 flex items-center md:ml-30 justify-center cursor-pointer"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <Image
             src="/images/Logo.png"
@@ -108,7 +145,11 @@ export default function Header() {
             <motion.button 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-7 py-2.5 mr-27 rounded-full border border-[#1CBCCF] text-slate-700 font-medium text-sm hover:bg-[#1CBCCF] hover:text-white transition-all duration-200"
+              onClick={() => {
+                const el = document.getElementById('CTA') || document.getElementById('contact');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="px-7 py-2.5 mr-27 rounded-full border border-[#1CBCCF] text-slate-700 font-medium text-sm hover:bg-[#1CBCCF] hover:text-white transition-all duration-200 cursor-pointer"
             >
               BOOK NOW
             </motion.button>
@@ -135,24 +176,24 @@ export default function Header() {
       >
         <div className="bg-white rounded-xl shadow-lg border border-slate-100 px-6 h-16 flex items-center justify-between">
           <nav className="flex items-center space-x-5 text-sm font-normal">
-            <a href="#" className="text-[#1CBCCF] font-medium py-2">Home</a>
+            <a href="#home" className={`${activeSection === 'home' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-2`}>Home</a>
             <span className="text-slate-200 font-light">|</span>
-            <a href="#services" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Services</a>
+            <a href="#services" className={`${activeSection === 'services' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-2`}>Services</a>
             <span className="text-slate-200 font-light">|</span>
-            <a href="#testimonials" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Testimonials</a>
+            <a href="#testimonials" className={`${activeSection === 'testimonials' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-2`}>Testimonials</a>
             <span className="text-slate-200 font-light">|</span>
-            <a href="#team" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Team</a>
+            <a href="#team" className={`${activeSection === 'team' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-2`}>Team</a>
             <span className="text-slate-200 font-light">|</span>
-            <a href="#FAQ" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">FAQ</a>
+            <a href="#FAQ" className={`${activeSection === 'FAQ' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-2`}>FAQ</a>
             <span className="text-slate-200 font-light">|</span>
-            <a href="#blog" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Blogs</a>
-             <span className="text-slate-200 font-light">|</span>
-             <a href="#CTA" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">CTA</a>
-             <span className="text-slate-200 font-light">|</span>
-            <a href="#contact" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-2">Contacts</a>
+            <a href="#blogs" className={`${activeSection === 'blogs' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-2`}>Blogs</a>
+            <span className="text-slate-200 font-light">|</span>
+            <a href="#CTA" className={`${activeSection === 'CTA' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-2`}>CTA</a>
+            <span className="text-slate-200 font-light">|</span>
+            <a href="#contact" className={`${activeSection === 'contact' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-2`}>Contacts</a>
           </nav>
 
-          {/* Search Form (Clickable & Redirects on Enter) */}
+          {/* Search Form (Clickable & Redirects to Section on Enter) */}
           <form onSubmit={handleSearch} className="flex items-center bg-transparent space-x-2.5">
             <button type="submit" className="flex items-center focus:outline-none bg-transparent border-none cursor-pointer">
               <Search className="w-5 h-5 text-[#1CBCCF] stroke-[2.2]" />
@@ -193,16 +234,14 @@ export default function Header() {
           {/* Centered Navigation Links, Contact Info & Book Now Button starting from top */}
           <div className="flex flex-col items-center space-y-4 text-center w-full mt-1">
             <nav className="flex flex-col items-center space-y-3 text-base font-medium w-full">
-              <a href="#" className="text-[#1CBCCF] py-1" onClick={() => setMobileMenuOpen(false)}>Home</a>
-              <a href="#services" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>services</a>
-              <a href="#testimonials" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Testimonials</a>
-              <a href="#team" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Team</a>
-              <a href="#FAQ" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
-              <a href="#blogs" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Blogs</a>
-                                       <a href="#CTA" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>CTA</a>
-
-                    <a href="#contact" className="text-slate-600 hover:text-[#1CBCCF] transition-colors py-1" onClick={() => setMobileMenuOpen(false)}>Contact</a>
-
+              <a href="#home" className={`${activeSection === 'home' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} py-1`} onClick={() => setMobileMenuOpen(false)}>Home</a>
+              <a href="#services" className={`${activeSection === 'services' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-1`} onClick={() => setMobileMenuOpen(false)}>services</a>
+              <a href="#testimonials" className={`${activeSection === 'testimonials' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-1`} onClick={() => setMobileMenuOpen(false)}>Testimonials</a>
+              <a href="#team" className={`${activeSection === 'team' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-1`} onClick={() => setMobileMenuOpen(false)}>Team</a>
+              <a href="#FAQ" className={`${activeSection === 'FAQ' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-1`} onClick={() => setMobileMenuOpen(false)}>FAQ</a>
+              <a href="#blogs" className={`${activeSection === 'blogs' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-1`} onClick={() => setMobileMenuOpen(false)}>Blogs</a>
+              <a href="#CTA" className={`${activeSection === 'CTA' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-1`} onClick={() => setMobileMenuOpen(false)}>CTA</a>
+              <a href="#contact" className={`${activeSection === 'contact' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'} hover:text-[#1CBCCF] transition-colors py-1`} onClick={() => setMobileMenuOpen(false)}>Contact</a>
             </nav>
 
             {/* Contact Info with separation line colored #1CBCCF */}
