@@ -17,25 +17,26 @@ export default function Page() {
   const [showMain, setShowMain] = useState(false);
 
   return (
-    // Changed overflow-hidden to overflow-visible (or remove overflow-hidden)
-    <main className="min-h-screen relative overflow-visible bg-slate-950">
+    // min-h-screen creates natural page height allowing the right-side scrollbar to appear
+    <main className="min-h-screen w-full relative overflow-x-hidden bg-slate-950">
+      
+      {/* Full-Page Fixed Background Image behind everything */}
+      <div 
+        className="fixed inset-0 w-screen h-screen bg-cover bg-center bg-no-repeat filter blur-xl scale-110 opacity-70 pointer-events-none z-0"
+        style={{ backgroundImage: "url('/images/blur.jpg')" }}
+      />
+
       <AnimatePresence mode="wait">
         {!showMain ? (
-          /* 1. Splash Screen View */
+          /* 1. Splash Screen View: Fixed full viewport layout with the scrollbar on the right */
           <motion.div
             key="splash"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="absolute inset-0 z-50 min-h-screen"
+            className="relative z-10 pt-13 w-full h-screen flex items-center justify-center overflow-hidden"
           >
-            {/* Fully Blurred Background Image */}
-            <div 
-              className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat filter blur-xl scale-110 opacity-70"
-              style={{ backgroundImage: "url('/images/blur.jpg')" }}
-            />
-
             <HeroSplash 
               appName="Insove"
               imageSrc="/images/doctors.png"
@@ -49,8 +50,7 @@ export default function Page() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            // Changed overflow-hidden to overflow-visible here too
-            className="min-h-screen bg-slate-50 relative overflow-visible"
+            className="relative z-10 min-h-screen bg-slate-50 overflow-x-hidden"
           >
             <Header />
             <HeroSection />
