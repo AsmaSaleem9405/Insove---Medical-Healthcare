@@ -116,7 +116,7 @@ export default function InsoveFaqAndServicesPage() {
           <motion.div 
             initial={{ opacity: 0, y: -20, rotateX: -10 }}
             whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "-50px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="text-center mb-12"
           >
@@ -133,7 +133,7 @@ export default function InsoveFaqAndServicesPage() {
                   key={index} 
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="py-5 transition-all duration-300"
                 >
@@ -178,7 +178,7 @@ export default function InsoveFaqAndServicesPage() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.95, rotateX: 5 }}
             whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "-50px" }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             style={{ transformStyle: 'preserve-3d' }}
             className="relative w-full max-w-6xl rounded-3xl overflow-hidden shadow-2xl p-6 md:p-12 bg-slate-50 border border-slate-100"
@@ -265,7 +265,7 @@ export default function InsoveFaqAndServicesPage() {
                       <motion.a
                         whileHover={{ scale: 1.05, translateZ: 20 }}
                         whileTap={{ scale: 0.95 }}
-                        href="#contact"
+                        href="/#contact"
                         className="inline-block bg-cyan-500 hover:bg-cyan-600 text-white font-semibold text-sm px-7 py-3 rounded-full shadow-lg hover:shadow-cyan-500/25 transition-all duration-300"
                       >
                         LEARN MORE

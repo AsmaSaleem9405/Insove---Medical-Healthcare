@@ -20,9 +20,9 @@ export default function BlogDetailPage({ params }) {
 
   return (
     <div
-    className="w-full min-h-screen bg-white overflow-hidden" style={{ perspective: "1200px" }}>
+    className="w-full min-h-screen bg-white overflow-x-hidden" style={{ perspective: "1200px" }}>
       {/* Full width wrapper set to pure white */}
-      <main className="min-h-screen bg-white text-gray-950 py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+      <main className="min-h-screen bg-white text-gray-950 py-8 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         
         {/* Back Link Animation */}
         <motion.div
@@ -32,7 +32,7 @@ export default function BlogDetailPage({ params }) {
         >
           <Link
             href="/"
-            className="text-sm font-semibold text-[#29b6f6] hover:underline mb-6 inline-block transition-transform hover:-translate-x-1"
+            className="text-xs sm:text-sm font-semibold text-[#29b6f6] hover:underline mb-4 sm:mb-6 inline-block transition-transform hover:-translate-x-1"
           >
             &larr; Back to Home
           </Link>
@@ -43,12 +43,12 @@ export default function BlogDetailPage({ params }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-          className="flex items-center gap-4 mb-3"
+          className="flex flex-wrap items-center gap-3 mb-3"
         >
-          <span className="bg-[#5bc0be] text-white text-xs font-semibold px-3 py-1 rounded uppercase tracking-wider shadow-sm">
+          <span className="bg-[#5bc0be] text-white text-[10px] sm:text-xs font-semibold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded uppercase tracking-wider shadow-sm">
             {blog.category}
           </span>
-          <span className="text-sm text-gray-500">{blog.date}</span>
+          <span className="text-xs sm:text-sm text-gray-500">{blog.date}</span>
         </motion.div>
 
         {/* Title Animation */}
@@ -57,7 +57,7 @@ export default function BlogDetailPage({ params }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
         >
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-gray-950 mb-6 leading-tight">
+          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-gray-950 mb-4 sm:mb-6 leading-tight break-words">
             {blog.title}
           </h1>
         </motion.div>
@@ -68,7 +68,7 @@ export default function BlogDetailPage({ params }) {
           whileInView={{ opacity: 1, rotateX: 0, scale: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.215, 0.61, 0.355, 1] }}
-          className="relative h-[350px] sm:h-[450px] w-full rounded-2xl overflow-hidden mb-8 shadow-2xl border border-gray-100"
+          className="relative h-[220px] xs:h-[280px] sm:h-[380px] lg:h-[450px] w-full rounded-xl sm:rounded-2xl overflow-hidden mb-6 sm:mb-8 shadow-xl sm:shadow-2xl border border-gray-100"
           style={{ transformStyle: "preserve-3d" }}
         >
           <Image
@@ -86,10 +86,10 @@ export default function BlogDetailPage({ params }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="prose max-w-none text-gray-800 text-lg leading-relaxed space-y-6"
+          className="prose max-w-none text-gray-800 text-sm sm:text-base lg:text-lg leading-relaxed space-y-4 sm:space-y-6"
         >
-          <p>{blog.content}</p>
-          <p>
+          <p className="break-words">{blog.content}</p>
+          <p className="break-words">
             Implementing these strategies consistently will yield significant long-term improvements in your overall wellbeing and daily lifestyle. Make sure to consult with professional experts if you encounter persistent symptoms or require personalized guidance tailored to your specific situation.
           </p>
         </motion.div>

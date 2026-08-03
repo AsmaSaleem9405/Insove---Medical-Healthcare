@@ -163,7 +163,7 @@ export default function Footer() {
                   <motion.li key={index} whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
                     <Link 
                       href={link.href} 
-                      className={`hover:text-[#90C6CD] transition-colors ${link.name === 'Home' ? 'text-[#1CBCCF] font-medium' : 'text-slate-600'}`}
+                      className={`hover:text-[#4fadba] transition-colors ${link.name === 'Home' ? 'text-slate-600' : 'text-slate-600'}`}
                     >
                       {link.name}
                     </Link>
