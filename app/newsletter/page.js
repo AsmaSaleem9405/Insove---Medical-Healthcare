@@ -118,20 +118,20 @@ export default function NewsletterPage() {
           >
             <form 
               onSubmit={(e) => { e.preventDefault(); }} 
-              className="relative flex flex-col sm:flex-row items-center md:bg-transparent border md:border-white/70 md:rounded-2xl rounded-full md:rounded-full p-1.5 md:backdrop-blur-sm transition-all focus-within:border-white shadow-inner gap-2 sm:gap-0"
+              className="relative flex flex-row items-center border border-white/70 rounded-full p-1.5 backdrop-blur-sm transition-all focus-within:border-white shadow-inner gap-0"
             >
               <input 
                 type="email" 
                 required 
                 placeholder="Your Email Address" 
                 aria-label="Your Email Address"
-                className="w-full bg-transparent border border-white/70 sm:border-none rounded-full sm:rounded-none px-5 py-3 sm:px-6 sm:py-3.5 text-white placeholder-white/80 focus:outline-none text-xs sm:text-base text-center sm:text-left"
+                className="w-full bg-transparent rounded-l-full pl-5 pr-2 py-3 sm:px-6 sm:py-3.5 text-white placeholder:text-white/80 focus:outline-none text-xs sm:text-base text-left truncate"
               />
               <motion.button 
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.95 }}
                 type="submit" 
-                className="w-full sm:w-auto mt-0 bg-white text-[#15a3bc] font-semibold px-6 py-3 sm:px-8 sm:py-3.5 rounded-full hover:bg-neutral-100 transition-colors shadow-md text-xs sm:text-base whitespace-nowrap cursor-pointer"
+                className="shrink-0 bg-white text-[#15a3bc] font-semibold px-5 py-2.5 sm:px-8 sm:py-3.5 rounded-full hover:bg-neutral-100 transition-colors shadow-md text-xs sm:text-base whitespace-nowrap cursor-pointer"
               >
                 SUBSCRIBE
               </motion.button>
