@@ -115,9 +115,7 @@ export default function ServicesAppointmentPage() {
   };
 
   return (
-    <main id="services"
-     ref={containerRef} className="w-full bg-white py-12 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[#3bc5d4] selection:text-white overflow-hidden perspective-[1400px]">
-      
+   <main id="services" ref={containerRef} className="w-full bg-white py-12 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[#3bc5d4] selection:text-white overflow-hidden perspective-[1400px]">
       {/* Main container with framer-motion 3D scroll reactions working both up and down */}
       <motion.div 
         style={{ scale, rotateX, transformStyle: 'preserve-3d' }}
@@ -333,18 +331,14 @@ export default function ServicesAppointmentPage() {
                   </button>
                 </div>
               </div>
-
-             <div className="pt-4 text-center sm:text-left">
-  <motion.button 
-    whileHover={{ scale: 1.03, y: -2 }}
-    whileTap={{ scale: 0.97 }}
-    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+<div className="pt-4 text-center sm:text-left">
+  <button 
     type="submit" 
     disabled={loading}
-    className="w-full sm:w-auto bg-[#1fc5d4] hover:bg-[#1bb0be] text-white font-medium px-8 py-3.5 rounded-full shadow-lg transition-colors duration-200 text-sm tracking-wide uppercase disabled:opacity-50 cursor-pointer"
+    className="w-full sm:w-auto bg-[#1fc5d4] hover:bg-[#1bb0be] text-white font-medium px-8 py-3.5 rounded-full shadow-lg transition-colors duration-200 text-sm tracking-wide uppercase disabled:opacity-50 cursor-pointer relative z-50"
   >
     {loading ? 'Processing...' : 'Book An Appointment'}
-  </motion.button>
+  </button>
 </div>
             </form>
           </motion.section>

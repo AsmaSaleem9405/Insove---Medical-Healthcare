@@ -1,61 +1,73 @@
-import { NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import nodemailer from "nodemailer";
+import { NextResponse } from "next/server";
 
-export async function POST(request) {
+export async function POST(req) {
   try {
-    const body = await request.json();
+    const body = await req.json();
+
     const { department, doctor, fullName, phone, date, time } = body;
 
-    // Validate required fields
+    // Basic validation
     if (!department || !doctor || !fullName || !phone || !date || !time) {
       return NextResponse.json(
-        { message: 'All fields are required.' },
+        {
+          success: false,
+          message: "All fields are required.",
+        },
         { status: 400 }
       );
     }
 
-    // Configure the transporter using Gmail and your App Password
+    // Check environment variables
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "EMAIL_USER or EMAIL_PASS is missing in environment variables.",
+        },
+        { status: 500 }
+      );
+    }
+
+    // Create transporter
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
     });
 
-    // Setup email options
-    const mailOptions = {
+    // Send email
+    await transporter.sendMail({
       from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER, // Sends the email to yourself
-      subject: `New Medical Appointment: ${fullName}`,
+      to: process.env.EMAIL_USER,
+      subject: `New Appointment Request: ${fullName}`,
       html: `
-        <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #e2e8f0; border-radius: 10px;">
-          <h2 style="color: #1fc5d4;">New Appointment Request</h2>
-          <p>You have received a new appointment booking with the following details:</p>
-          <hr style="border: none; border-top: 1px solid #e2e8f0;" />
-          <ul style="list-style: none; padding: 0;">
-            <li><strong>Full Name:</strong> ${fullName}</li>
-            <li><strong>Phone Number:</strong> ${phone}</li>
-            <li><strong>Department:</strong> ${department}</li>
-            <li><strong>Doctor:</strong> ${doctor}</li>
-            <li><strong>Date:</strong> ${date}</li>
-            <li><strong>Time:</strong> ${time}</li>
-          </ul>
-        </div>
+        <h2>New Patient Appointment Request</h2>
+        <p><strong>Full Name:</strong> ${fullName}</p>
+        <p><strong>Phone Number:</strong> ${phone}</p>
+        <p><strong>Department:</strong> ${department}</p>
+        <p><strong>Doctor:</strong> ${doctor}</p>
+        <p><strong>Date:</strong> ${date}</p>
+        <p><strong>Time:</strong> ${time}</p>
       `,
-    };
+    });
 
-    // Send the email
-    await transporter.sendMail(mailOptions);
-
-    return NextResponse.json(
-      { message: 'Appointment booked successfully and email sent!' },
-      { status: 200 }
-    );
+    return NextResponse.json({
+      success: true,
+      message: "Appointment booked and email sent successfully!",
+    });
   } catch (error) {
-    console.error('Email error:', error);
+    console.error("APPOINTMENT API ERROR:", error);
+
     return NextResponse.json(
-      { message: 'Failed to send appointment email. Please try again later.' },
+      {
+        success: false,
+        message: error.message || "Something went wrong.",
+      },
       { status: 500 }
     );
   }
