@@ -46,15 +46,18 @@ export default function HeroSplash({ appName, imageSrc, onEnter }) {
           </motion.p>
 
           {/* Clickable button with pointer-events-auto enabled */}
-          <motion.button 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            onClick={onEnter}
-            className="pointer-events-auto mt-4 sm:mt-6 text-[10px] sm:text-xs uppercase tracking-widest text-teal-950 font-bold bg-teal-300 hover:bg-teal-200 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full shadow-lg backdrop-blur-md border border-white/20 transition-all duration-200 hover:scale-105 cursor-pointer"
-          >
-            Click to Enter Website &rarr;
-          </motion.button>
+   <motion.button 
+  initial={{ opacity: 0, y: 10 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+  whileHover={{ scale: 1.02, y: -2 }}
+  whileTap={{ scale: 0.98 }}
+  onClick={onEnter}
+  className="pointer-events-auto mt-6 inline-flex items-center justify-center gap-2 text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold text-white bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-400 hover:to-cyan-400 px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-[0_10px_25px_-5px_rgba(20,184,166,0.4)] hover:shadow-[0_15px_30px_-5px_rgba(20,184,166,0.6)] border border-white/20 transition-all duration-300 cursor-pointer group"
+>
+  <span>Explore Website</span>
+  <span className="transition-transform duration-300 group-hover:translate-x-1.5">&rarr;</span>
+</motion.button>
         </div>
 
       </motion.div>
